@@ -15,7 +15,7 @@ function App() {
       </header>
       <Volunteer></Volunteer>
       <footer>
-        <p>Power by Maxeeb & co</p>
+        <p>Powered by Venaja</p>
       </footer>
     </div>
   );

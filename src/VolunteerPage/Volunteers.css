@@ -10,7 +10,8 @@ padding: 0 1rem; /* Отступы по бокам */
 border-radius: 0.5rem;
 font-weight: 500;
 line-height: 1.5rem; /* Высота строки текста */
-border-color: rgba(0, 0, 0, 0);
+border: none;
+outline: none;
 }
 
 .child.buttons button {
@@ -97,14 +98,17 @@ box-sizing: border-box;
   background-color: rgb(204, 210, 214);
 }
 
-/* Стили для элементов события */
+.event-box {
+  width: 80%;
+}
+
 .event-item {
-  padding: 10px 20px;
-  background-color: rgb(228, 235, 240);
-  margin: 5px 10px;
-  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
+  background-color: rgb(228, 235, 240);
+  padding: 10px 20px;
+  margin: 5px 10px;
+  border-radius: 0.5rem;
 }
 
 /* Стили для блока с основной информацией */
@@ -168,6 +172,31 @@ box-sizing: border-box;
   opacity: 1; /* Окно становится полностью видимым */
 }
 
+.event-content {
+  display: flex;
+  align-items: center;
+}
+
+
+.button-container button {
+  white-space: nowrap;
+  background-color: rgb(37, 210, 69); /* bg-blue-600 */
+  color: white;
+  width: 100%;
+  border-radius: 0.5rem;
+  height: 25px;
+}
+
+
+.button-container {
+  flex-grow: 1; /* Занимает всё оставшееся пространство */
+  display: flex;
+  justify-content:center;
+  padding: 5px; /* Кнопка прилипает к правому краю */
+}
+
+
+
   
 .modal-content button {
   padding: 10px 20px;
@@ -181,4 +210,15 @@ box-sizing: border-box;
 
 .modal-content button:hover {
   background-color: #2a8f45;
+}
+
+.request-paticipance:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: default;
+}
+
+.request-paticipance:disabled:hover {
+  background-color: rgb(204, 204, 204); /* или тот же цвет, что и без hover */
+  color: #666;
 }
