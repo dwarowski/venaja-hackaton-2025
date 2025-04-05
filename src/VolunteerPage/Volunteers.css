@@ -38,32 +38,50 @@
     background-color: rgb(180, 183, 185);
   }
 
-.parent {
+  .parent {
     display: flex;
-    flex-direction: column; /* Элементы располагаются в колонку */
+    flex-direction: column;
     gap: 1rem;
-    min-width: 500px; /* Минимальная ширина */
-    width: 700px; /* Ширина */
-    margin: 0 auto; 
-}
+    min-width: 500px;
+    width: 900px;
+    margin: 0 auto;
+    padding: 9px;
+  
+    /* Высота родителя — 100vh минус высота футера */
+    height: calc(100vh - 50px); /* 50px = высота footer */
+    box-sizing: border-box;
+  }
+  
 
 .child {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
-    margin: 10px 5% 10px 5%;  /* Расстояние между кнопками */
+    margin: 10px 5% 10px 5%;/* Расстояние между кнопками */
+    box-sizing: border-box;
 }
 
 .child.buttons {
-    flex-direction: row; /* Кнопки располагаются в ряд */
+    flex-shrink: 0; /* Не растягивается */
+    flex-direction: row;
     justify-content: center;
     margin-top: 90px;
     gap: 1rem;
 }
 
-.EventsList {
-    border-radius: 0.5rem;
-    background-color: rgb(242, 245, 247);
+.child:not(.buttons) {
+flex: 1; /* Растягивается */
+display: flex;
+flex-direction: column;
+margin: 10px 5%;
+box-sizing: border-box;
+}
 
+.EventsList {
+flex: 1;
+border-radius: 0.5rem;
+background-color: rgb(242, 245, 247);
+width: 100%;
+overflow-y: auto;
 }
 

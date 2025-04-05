@@ -2,6 +2,19 @@ p, h1 {
   font: 500 16px / 20px SBSansText, OpenSans, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
+body {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 header {
   background-color: rgb(36, 232, 36);
 }
@@ -10,15 +23,9 @@ header h1 {
   margin: 0;
   text-align: center;
 }
-
 footer {
   background-color: green;
   color: white;
-  position: fixed;
-  bottom: 0; /* Фиксация снизу */
-  left: 0; /* К началу слева */
-  right: 0; /* Без отступов справа */
-  height: 50px; /* Задаем высоту */
   text-align: center;
 }
 

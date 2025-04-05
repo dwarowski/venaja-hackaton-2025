@@ -1,11 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+interface Event {
+  title: string;
+  date: string;
+  time: string;
+}
 
-const ClosedEvents: React.FC = () => (
-    <ul className="list-disc pl-5">
-      <li>pipe Frontend Meetup 2018</li>
-      <li> skibidi Node.js Workshop</li>
+interface EventsProps {
+  events: Event[];
+}
+
+const FutureEvents: React.FC<EventsProps> = ({ events }) => {
+  return (
+    <ul className="events-list">
+      {events.map((event, index) => (
+        <li key={index}>
+          <div className="event-item">
+            <h3>{event.title}</h3>
+            <p>{event.date}</p>
+            <p>{event.time}</p>
+          </div>
+        </li>
+      ))}
     </ul>
   );
+};
 
-export default ClosedEvents;
+export default FutureEvents;

@@ -1,14 +1,29 @@
-// Примеры компонентов
-import React, { useState } from 'react';
+import React from 'react';
 
+interface Event {
+  title: string;
+  date: string;
+  time: string;
+}
 
-const MyEvents: React.FC = () => {
-    return (
-  <ul className="list-disc pl-5">
-    <li>Подписка на конференцию</li>
-    <li>Мастер-класс по React</li>
-  </ul>
-  )
+interface EventsProps {
+  events: Event[];
+}
+
+const FutureEvents: React.FC<EventsProps> = ({ events }) => {
+  return (
+    <ul className="events-list">
+      {events.map((event, index) => (
+        <li key={index}>
+          <div className="event-item">
+            <h3>{event.title}</h3>
+            <p>{event.date}</p>
+            <p>{event.time}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
 };
 
-export default MyEvents;
+export default FutureEvents;
