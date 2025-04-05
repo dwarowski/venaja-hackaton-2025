@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Volunteers.css';
 import MyEvents from './MyEvents';
 import FutureEvents from './FutureEvents';
 
@@ -8,32 +9,32 @@ const Volunteer: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('my');
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="flex gap-2">
+    <div className="parent">
+      <div className="child buttons">
         <button
-          className={`px-4 py-2 rounded-lg font-medium ${
-            activeTab === 'my' ? 'bg-blue-600 text-white' : 'bg-gray-200'
-          }`}
+          className={`button ${activeTab === 'my' ? 'button-active' : 'button-inactive'}`}
           onClick={() => setActiveTab('my')}
         >
           Мои события
         </button>
         <button
-          className={`px-4 py-2 rounded-lg font-medium ${
-            activeTab === 'future' ? 'bg-blue-600 text-white' : 'bg-gray-200'
-          }`}
+          className={`button ${activeTab === 'future' ? 'button-active' : 'button-inactive'}`}
           onClick={() => setActiveTab('future')}
         >
           Будущие мероприятия
         </button>
+        
+        <button
+          className={`button ${activeTab === 'future' ? 'button-active' : 'button-inactive'}`}
+          onClick={() => setActiveTab('future')}
+        >
+          Завершенные мероприятия
+        </button>
       </div>
-
-      <div className="w-full mt-4">
-        {activeTab === 'my' ? (
-          <MyEvents />
-        ) : (
-          <FutureEvents />
-        )}
+      <div className="child">
+        <div className="EventsList">
+          {activeTab === 'my' ? <MyEvents /> : <FutureEvents />}
+        </div> 
       </div>
     </div>
   );

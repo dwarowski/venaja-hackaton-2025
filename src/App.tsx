@@ -1,8 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
 import Volunteer from './VolunteerPage/Volunteer';
-
-
 
 
 function App() {
