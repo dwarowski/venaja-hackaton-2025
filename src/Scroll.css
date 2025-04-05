@@ -1,0 +1,18 @@
+/* Для WebKit-браузеров (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 4px; /* Ширина вертикальной полосы прокрутки */
+    height: 4px; /* Высота горизонтальной полосы прокрутки */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: white; /* Цвет дорожки */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #d1dbe3; /* Цвет ползунка */
+    border-radius: 10px; /* Скругление углов ползунка */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #cad4db; /* Цвет ползунка при наведении */
+  }

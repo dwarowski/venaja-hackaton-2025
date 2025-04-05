@@ -4,6 +4,7 @@ interface Event {
   title: string;
   date: string;
   time: string;
+  description: string;
 }
 
 interface EventsProps {
@@ -16,9 +17,12 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
       {events.map((event, index) => (
         <li key={index}>
           <div className="event-item">
-            <h3>{event.title}</h3>
-            <p>{event.date}</p>
-            <p>{event.time}</p>
+            <div className='main-info'>
+              <h1>{event.title}</h1>
+              <p>{event.date}</p>
+              <p>{event.time}</p>
+            </div>
+            <p className='event-description'> {event.description}</p>
           </div>
         </li>
       ))}
