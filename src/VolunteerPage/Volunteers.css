@@ -1,0 +1,69 @@
+/* Volunteer.css */
+
+
+.button {
+    display: flex;
+    justify-content: center; /* Центрирование текста по горизонтали */
+    align-items: center; /* Центрирование текста по вертикали */
+    height: 2.5rem; /* Высота кнопки */
+    padding: 0 1rem; /* Отступы по бокам */
+    border-radius: 0.5rem;
+    font-weight: 500;
+    line-height: 1.5rem; /* Высота строки текста */
+    border-color: rgba(0, 0, 0, 0);
+  }
+
+.child.buttons button {
+    transition: background-color 0.5s ease, color 0.5s ease;
+    min-width: 100px;
+    width: 300px;
+    padding: 0 2rem;
+}
+  
+  .button-active {
+    background-color: rgb(36, 178, 62); /* bg-blue-600 */
+    color: white;
+  }
+
+  .button-active:hover {
+    background-color: rgb(28, 109, 43); /* bg-blue-600 */
+    color: white;
+  }
+  
+  .button-inactive {
+    background-color: rgb(228,235,240); /* bg-gray-200 */
+  }
+
+  .button-inactive:hover {
+    background-color: rgb(180, 183, 185);
+  }
+
+.parent {
+    display: flex;
+    flex-direction: column; /* Элементы располагаются в колонку */
+    gap: 1rem;
+    min-width: 500px; /* Минимальная ширина */
+    width: 700px; /* Ширина */
+    margin: 0 auto; 
+}
+
+.child {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 10px 5% 10px 5%;  /* Расстояние между кнопками */
+}
+
+.child.buttons {
+    flex-direction: row; /* Кнопки располагаются в ряд */
+    justify-content: center;
+    margin-top: 90px;
+    gap: 1rem;
+}
+
+.EventsList {
+    border-radius: 0.5rem;
+    background-color: rgb(242, 245, 247);
+
+}
+

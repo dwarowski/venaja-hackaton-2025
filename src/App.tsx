@@ -2,8 +2,6 @@ import './App.css';
 import Volunteer from './VolunteerPage/Volunteer';
 
 
-
-
 function App() {
 
   return (
