@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Volunteer from './VolunteerPage/Volunteer';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

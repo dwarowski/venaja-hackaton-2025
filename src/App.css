@@ -2,6 +2,33 @@ p, h1 {
   font: 500 16px / 20px SBSansText, OpenSans, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
+.functional-header {
+  display: flex;
+  justify-content: center; /* Центрируем элементы по горизонтали */
+  align-items: center; /* Центрируем элементы по вертикали */
+  width: 100%;
+  position: relative;
+  z-index: 1; /* Чтобы элементы отображались поверх картинки */
+  padding: 20px 0; /* Отступы сверху и снизу */
+}
+
+.header-image {
+  width: 100%; /* Картинка растягивается на всю ширину */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Отправляем на задний план */
+}
+
+header h1 {
+  position: relative; /* Размещаем текст поверх картинки */
+  z-index: 1; /* Текст будет поверх картинки */
+  color: white; /* Цвет текста для лучшей видимости */
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+
 body {
   overflow: hidden;
   display: flex;
@@ -15,16 +42,20 @@ body {
   height: 100vh;
 }
 
-header {
-  background-color: rgb(36, 232, 36);
+.App-header {
+  position: relative; /* Для правильного позиционирования верхней линии */
+  width: 100%;
 }
 
-header h1 {
-  margin: 0;
-  text-align: center;
+.header-logo {
+  max-width: 100%; /* Оставляем это, чтобы изображение не выходило за пределы родительского контейнера */
+  height: auto; /* Сохраняем пропорции */
+  max-height: 150px; /* Увеличиваем максимальную высоту */
+  margin: 0 auto; /* Центрируем изображение по горизонтали */
 }
+
 footer {
-  background-color: green;
+  background-color: #171a1e;
   color: white;
   text-align: center;
 }
