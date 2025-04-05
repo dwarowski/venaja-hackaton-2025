@@ -1,6 +1,5 @@
 /* Volunteer.css */
 
-
 .button {
     display: flex;
     justify-content: center; /* Центрирование текста по горизонтали */
@@ -64,6 +63,4 @@
 .EventsList {
     border-radius: 0.5rem;
     background-color: rgb(242, 245, 247);
-
 }
-

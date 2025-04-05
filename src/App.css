@@ -13,8 +13,6 @@ header h1 {
 
 footer {
   background-color: green;
-footer {
-  background-color: green;
   color: white;
   position: fixed;
   bottom: 0; /* Фиксация снизу */
