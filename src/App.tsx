@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         <img src="/upper_line.svg" className="header-image"/>
         <div className='functional-header'>
-          <img src="/logo.svg" className = "header-logo"/>
+          <a href="http://www.sberbank.ru"><img src="/logo.svg" className = "header-logo"/></a>
         </div>
       </header>
       <Volunteer></Volunteer>

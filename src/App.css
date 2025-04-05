@@ -9,7 +9,8 @@ p, h1 {
   width: 100%;
   position: relative;
   z-index: 1; /* Чтобы элементы отображались поверх картинки */
-  padding: 20px 0; /* Отступы сверху и снизу */
+  padding: 15px 0; /* Отступы сверху и снизу */
+  flex: 1;
 }
 
 .header-image {
