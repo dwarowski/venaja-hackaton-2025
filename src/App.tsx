@@ -2,7 +2,6 @@ import './App.css';
 import Participant from './components/Participant/Participant';
 import Volunteer from './VolunteerPage/Volunteer';
 
-
 function App() {
 
 
