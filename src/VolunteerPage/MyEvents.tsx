@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import { TimeRange, formatDate, formatTimeRange } from './Volunteer';
+
 
 interface Event {
   title: string;
-  date: string;
-  time: string;
+  date: TimeRange;
   description: string;
+  accepted: Boolean;
 }
 
 interface EventsProps {
   events: Event[];
 }
+
 
 const FutureEvents: React.FC<EventsProps> = ({ events }) => {
   // Состояние для модального окна
@@ -43,8 +46,8 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
             <div className="event-item">
               <div className='main-info'>
                 <h1>{event.title}</h1>
-                <p>{event.date}</p>
-                <p>{event.time}</p>
+                <p>{formatDate(event.date[0])}</p>
+                <p>{formatTimeRange(event.date)}</p>
               </div>
               <p className='event-description'>{event.description}</p>
             </div>
@@ -60,8 +63,8 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
         >
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h1><strong>Название:</strong> {selectedEvent.title}</h1>
-            <p><strong>Дата:</strong> {selectedEvent.date}</p>
-            <p><strong>Время:</strong> {selectedEvent.time}</p>
+            <p><strong>Дата:</strong> {formatDate(selectedEvent.date[0])}</p>
+            <p><strong>Время:</strong> {formatTimeRange(selectedEvent.date)}</p>
             <p><strong>Описание:</strong> {selectedEvent.description}</p>
             <button onClick={closeModal}>Понял</button>
           </div>
