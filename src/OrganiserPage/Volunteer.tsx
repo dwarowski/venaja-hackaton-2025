@@ -1,10 +1,6 @@
-// Organizers.tsx
-// VolunteerPage.tsx
 import React, { useState } from 'react';
 import UpcomingEvents from './components/sections/UpcomingEvents';
 import NewEventModal from './components/modals/NewEventModal';
-import CompletionModal from './components/modals/CompletionModal';
-//import PendingApplications from '../components/sections/PendingApplications';
 import CompletionEvents from './components/sections/CompletionEvents';
 import { 
   Event, 
@@ -15,7 +11,7 @@ import {
 import './VolunteerPage.css';
 
 
-const VolunteerPage: React.FC = () => {
+const OrganiserPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'upcoming' | 'pending' | 'completion'>('upcoming');
   const [showNewEventForm, setShowNewEventForm] = useState(false);
   const [events, setEvents] = useState<Event[]>([
@@ -161,7 +157,6 @@ const VolunteerPage: React.FC = () => {
     setShowNewEventForm(false);
   };
 
-  // Добавьте этот компонент в файл Volunteer.tsx
   const PendingApplications: React.FC<{ 
   requests: EventRequest[];
   onDelete: (id: number) => void;
@@ -212,7 +207,6 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
 ]);
 
   
-  // В компоненте VolunteerPage добавьте обработчик:
   const handleDeleteRequest = (requestId: number) => {
     setEventRequests(eventRequests.filter(r => r.id !== requestId));
   };
@@ -220,7 +214,7 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
  
 
   return (
-    <div className="volunteer-page">
+    <div className="organiser-page">
       <div className="tabs-container">
         <button
           className={`tab-button ${activeTab === 'upcoming' ? 'active' : ''}`}
@@ -285,4 +279,4 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
   );
 };
 
-export default VolunteerPage;
+export default OrganiserPage;
