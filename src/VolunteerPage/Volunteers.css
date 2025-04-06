@@ -237,3 +237,22 @@ outline: none;
   padding: 1px 6px;
   font-size: 13.333px;
 }
+
+
+
+/*  Andrey  */
+
+.volunteer__my-events_el_title-box {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 1fr;
+}
+
+.volunteer__my-events_el_title-box_name {
+    font-weight: bold;
+    font-size: large;
+}
+
+.volunteer__my-events_el_title-box_time {
+    text-align: end;
+}
