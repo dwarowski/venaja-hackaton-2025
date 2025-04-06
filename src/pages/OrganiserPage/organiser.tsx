@@ -1,7 +1,7 @@
 // Organizers.tsx
 // OrganiserPage.tsx
 import React, { useState } from 'react';
-import UpcomingEvents from './pages/components/sections/UpcomingEvents';
+import UpcomingEvents from './components/sections/UpcomingEvents';
 import NewEventModal from './components/modals/NewEventModal';
 import CompletionModal from './components/modals/CompletionModal';
 //import PendingApplications from '../components/sections/PendingApplications';
@@ -12,7 +12,7 @@ import {
   CompletionEvent,
   EventRequest 
 } from './components/shared/interfaces';
-import './VolunteerPage.css';
+import './organiser.css';
 
 
 const OrganiserPage: React.FC = () => {
