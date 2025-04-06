@@ -1,26 +1,13 @@
-import logo from './logo.svg';
+import React from 'react';
+import Volunteer from './OrganiserPage/Volunteer';
 import './App.css';
-import Volunteer from './VolunteerPage/Volunteer';
-
-
-
 
 function App() {
-
-  return (
-    <div className="App">
-
-      <header className="App-header">
-        <div>
-          <h1>Сбер. Страница Волонтерства</h1>
-        </div>
-      </header>
-      <Volunteer></Volunteer>
-      <footer>
-        <p>Power by Maxeeb & co</p>
-      </footer>
-    </div>
-  );
-}
+    return (
+      <div className="min-h-screen bg-gray-50 py-8">
+        <Volunteer />
+      </div>
+    );
+  } 
 
 export default App;
