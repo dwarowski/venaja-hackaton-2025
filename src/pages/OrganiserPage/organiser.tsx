@@ -3,8 +3,6 @@
 import React, { useState } from 'react';
 import UpcomingEvents from './components/sections/UpcomingEvents';
 import NewEventModal from './components/modals/NewEventModal';
-import CompletionModal from './components/modals/CompletionModal';
-//import PendingApplications from '../components/sections/PendingApplications';
 import CompletionEvents from './components/sections/CompletionEvents';
 import { 
   Event, 
