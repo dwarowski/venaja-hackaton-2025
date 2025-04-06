@@ -9,9 +9,23 @@ import {
   EventRequest 
 } from './components/shared/interfaces';
 import './organiser.css';
-
+import { Button } from 'antd';
+import { useAuthContext } from "../../AuthComponent/auth";
 
 const OrganiserPage: React.FC = () => {
+  const { keycloak , userInfo } = useAuthContext();
+  
+  <header className="App-header">
+        <img src="/upper_line.svg" className="header-image" alt='abiba'/>
+        <div className='functional-header'>
+          <a href="http://www.sberbank.ru"><img src="/logo.svg" className = "header-logo" alt='abiba'/></a>
+          <Button onClick={() => keycloak.logout()}>
+          Logout
+          </Button>
+        </div>
+      </header>
+
+
   const [activeTab, setActiveTab] = useState<'upcoming' | 'pending' | 'completion'>('upcoming');
   const [showNewEventForm, setShowNewEventForm] = useState(false);
   const [events, setEvents] = useState<Event[]>([
