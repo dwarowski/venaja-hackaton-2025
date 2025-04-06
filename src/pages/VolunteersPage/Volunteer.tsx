@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './Volunteers.css';
-import MyEvents from './MyEvents';
-import FutureEvents from './FutureEvents';
-import ClodesEvents from './ClosedEvents';
+import './Volunteer.css';
+import MyEvents from '../../utils/VolunteerPage/MyEvents';
+import FutureEvents from '../../utils/VolunteerPage/FutureEvents';
+import ClodesEvents from '../../utils/VolunteerPage/ClosedEvents';
 
 type Tab = 'my' | 'future' | 'past';
 

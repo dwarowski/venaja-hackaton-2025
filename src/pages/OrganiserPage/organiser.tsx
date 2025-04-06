@@ -1,7 +1,7 @@
 // Organizers.tsx
-// VolunteerPage.tsx
+// OrganiserPage.tsx
 import React, { useState } from 'react';
-import './VolunteerPage.css';
+import './organiser.css';
 
 interface Participant {
   id: number;
@@ -305,7 +305,7 @@ const NewEventModal: React.FC<{
   );
 };
 
-const VolunteerPage: React.FC = () => {
+const OrganiserPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'upcoming' | 'pending' | 'completion'>('upcoming');
   const [showNewEventForm, setShowNewEventForm] = useState(false);
   const [events, setEvents] = useState<Event[]>([
@@ -620,7 +620,7 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
 ]);
 
   
-  // В компоненте VolunteerPage добавьте обработчик:
+  // В компоненте OrganiserPage добавьте обработчик:
   const handleDeleteRequest = (requestId: number) => {
     setEventRequests(eventRequests.filter(r => r.id !== requestId));
   };
@@ -693,4 +693,4 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
   );
 };
 
-export default VolunteerPage;
+export default OrganiserPage;

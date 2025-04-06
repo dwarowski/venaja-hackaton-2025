@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TimeRange, formatDate, formatTimeRange } from './Volunteer';
+import { TimeRange, formatDate, formatTimeRange } from '../../pages/VolunteersPage/Volunteer';
 
 
 interface Event {

@@ -1,23 +1,22 @@
 import './App.css';
-import './Scroll.css'
-import Volunteer from './VolunteerPage/Volunteer';
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import VolunteerPage from './pages/VolunteersPage/VolunteerPage';
+import OrganiserPage from './pages/OrganiserPage/organiser';
 //Мне 
 function App() {
 //Нужно помимо центрирования логосбера в правой стороне добавить отображение имени вошедшего в аккаунт
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src="/upper_line.svg" className="header-image" alt='abiba'/>
-        <div className='functional-header'>
-          <a href="http://www.sberbank.ru"><img src="/logo.svg" className = "header-logo" alt='abiba'/></a>
+    <Router>
+      <div className="App">
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<VolunteerPage />} />
+            <Route path="/volunteer" element={<VolunteerPage />} />
+            <Route path="/organiser" element={<OrganiserPage />} />
+          </Routes>
         </div>
-      </header>
-      <Volunteer></Volunteer>
-      <footer>
-        <p>Powered by Venaja</p>
-      </footer>
-    </div>
+      </div>
+    </Router>
   );
 }
 
