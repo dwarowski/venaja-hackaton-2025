@@ -19,7 +19,7 @@ type UserInfo = {
       roles: string[];
     };
   };
-}
+} 
 
 type AuthContextStruct = {
   keycloak: KeycloakInstance;
@@ -91,5 +91,3 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const AuthContext = createContext<AuthContextStruct | null>(null);
 export const useAuthContext = () => useContext(AuthContext) as AuthContextStruct;
-
-

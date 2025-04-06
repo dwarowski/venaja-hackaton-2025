@@ -1,14 +1,16 @@
 import { useState } from "react"
 import './Participant.css';
+import {useAuthContext} from '../../context/auth';
+
 export default function Participant(){
     const [name,setName] = useState('Name');
     const [surname,setSurname] = useState('Surname');
     const [date,setDate] = useState('01.01.2025');
     const [role,setRole] = useState('НеГражданин');
 
-    const [decline] = useState()
-
+    const { keycloak, userInfo } = useAuthContext();
 return(
+    
     <div className='parent'>
         <div className='info'>
             <a className='participant'>{role}</a>
@@ -26,7 +28,6 @@ return(
             className={`button & button-decline`}
             onClick={()=> setRole('Отклонён')/* Заглушка до связи с бэком*/}>Отклонить</button>
         </div>
-        
     </div>
 )
 }
