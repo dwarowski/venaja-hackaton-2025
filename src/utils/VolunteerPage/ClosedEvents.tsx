@@ -81,19 +81,18 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
               <div className="event-item">
                 <div className="event-content">
                   <div className="event-box">
-                    <div className="main-info">
-                      <h1>{event.title}</h1>
-                      <p>{formatDate(event.date[0])}</p>
-                      <p>{formatTimeRange(event.date)}</p>
+                    <div className='volunteer__my-events_el_title-box'>
+                      <p className='volunteer__my-events_el_title-box_name'>{event.title}</p>
+                      <p className='volunteer__my-events_el_title-box_time'>{formatDate(event.date[0])},  {formatTimeRange(event.date)} </p>
                     </div>
-                    <p className="event-description">{event.description}</p>
+                    <p className='event-description'>{event.description}</p>
                   </div>
                   <div className="button-container">
                     {/* Здесь выводим либо текст "Отсутствовал", либо разницу во времени */}
                     {event.accepted ? (
-                      <p className="text-inactive">+ {calculateTimeDifference(event.date)} часов</p>
+                      <p className="text-inactive volunteer__future-events_button">+ {calculateTimeDifference(event.date)} часов</p>
                     ) : (
-                      <p className="text-inactive">Отсутствовал</p>
+                      <p className="text-inactive volunteer__future-events_button">Отсутствовал</p>
                     )}
                   </div>
                 </div>

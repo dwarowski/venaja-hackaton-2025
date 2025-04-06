@@ -25,7 +25,7 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
     setSelectedEvent(event);
     setIsModalOpen(true);
     setIsClosing(false);
-     // Если окно открылось, сбрасываем анимацию закрытия
+    // Если окно открылось, сбрасываем анимацию закрытия
   };
 
   // Функция для закрытия модального окна
@@ -44,10 +44,9 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
         {events.map((event, index) => (
           <li key={index} onClick={() => openModal(event)}>
             <div className="event-item">
-              <div className='main-info'>
-                <h1>{event.title}</h1>
-                <p>{formatDate(event.date[0])}</p>
-                <p>{formatTimeRange(event.date)}</p>
+              <div className='volunteer__my-events_el_title-box'>
+                <p className='volunteer__my-events_el_title-box_name'>{event.title}</p>
+                <p className='volunteer__my-events_el_title-box_time'>{formatDate(event.date[0])},  {formatTimeRange(event.date)} </p>
               </div>
               <p className='event-description'>{event.description}</p>
             </div>

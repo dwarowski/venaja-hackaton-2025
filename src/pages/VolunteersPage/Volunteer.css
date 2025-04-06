@@ -9,7 +9,7 @@ height: 2.5rem; /* Высота кнопки */
 padding: 0 1rem; /* Отступы по бокам */
 border-radius: 0.5rem;
 font-weight: 500;
-line-height: 1.5rem; /* Высота строки текста */
+line-height: 2rem; /* Высота строки текста */
 border: none;
 outline: none;
 }
@@ -187,9 +187,9 @@ box-sizing: border-box;
   color: white;
   width: 100%;
   border-radius: 0.5rem;
-  height: 25px;
+  line-height: 2rem;
   border: none;
-outline: none;
+  outline: none;
 }
 
 .button-container {
@@ -230,10 +230,38 @@ outline: none;
   color: #666; /* Цвет текста для выключенной кнопки */
   border-radius: 0.5rem;
   font-weight: 500;
-  line-height: 1.5rem;
+  line-height: 2rem;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   padding: 1px 6px;
   font-size: 13.333px;
+}
+
+
+
+/*  Andrey  */
+
+.volunteer__my-events_el_title-box {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 1fr;
+}
+
+.volunteer__my-events_el_title-box_name {
+    font-weight: bold;
+    font-size: large;
+}
+
+.volunteer__my-events_el_title-box_time {
+    text-align: end;
+}
+
+.volunteer__future-events_button-container {
+    margin: auto;
+
+}
+
+.volunteer__future-events_button {
+    margin: 0px 0px 0px 20px; 
 }
