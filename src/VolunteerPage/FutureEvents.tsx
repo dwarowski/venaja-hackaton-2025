@@ -67,29 +67,28 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
           return (
             <li key={index} onClick={() => openModal(event, index)}>
               <div className="event-item">
-  <div className="event-content">
-    <div className="event-box">
-      <div className="main-info">
-        <h1>{event.title}</h1>
-        <p>{formatDate(event.date[0])}</p>
-        <p>{formatTimeRange(event.date)}</p>
-      </div>
-      <p className="event-description">{event.description}</p>
-    </div>
-    <div className="button-container">
-      <button
-        className="request-paticipance"
-        disabled={disabled}
-        onClick={(e) => {
-          e.stopPropagation();
-          handleRequest(index);
-        }}
-      >
-        {text}
-      </button>
-    </div>
-  </div>
-</div>
+                <div className="event-content">
+                  <div className="event-box">
+                    <div className='volunteer__my-events_el_title-box'>
+                      <p className='volunteer__my-events_el_title-box_name'>{event.title}</p>
+                      <p className='volunteer__my-events_el_title-box_time'>{formatDate(event.date[0])},  {formatTimeRange(event.date)} </p>
+                    </div>
+                    <p className='event-description'>{event.description}</p>
+                  </div>
+                  <div className="button-container">
+                    <button
+                      className="request-paticipance volunteer__future-events_button"
+                      disabled={disabled}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRequest(index);
+                      }}
+                    >
+                      {text}
+                    </button>
+                  </div>
+                </div>
+              </div>
 
             </li>
           );

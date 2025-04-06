@@ -256,3 +256,12 @@ outline: none;
 .volunteer__my-events_el_title-box_time {
     text-align: end;
 }
+
+.volunteer__future-events_button-container {
+    margin: auto;
+
+}
+
+.volunteer__future-events_button {
+    margin: 0px 0px 0px 20px; 
+}
