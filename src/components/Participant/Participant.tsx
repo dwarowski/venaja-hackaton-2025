@@ -7,8 +7,6 @@ export default function Participant(){
     const [surname,setSurname] = useState('Surname');
     const [date,setDate] = useState('01.01.2025');
     const [role,setRole] = useState('НеГражданин');
-
-    const { keycloak, userInfo } = useAuthContext();
 return(
     
     <div className='parent'>

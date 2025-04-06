@@ -13,7 +13,7 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
     "antd": "^5.24.6",
-    "keycloak-js": "^26.1.4",
+    "keycloak-js": "^25.0.2",
     "process": "^0.11.10",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -33,7 +33,7 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
+  "browserslist": { 
     "production": [
       ">0.2%",
       "not dead",

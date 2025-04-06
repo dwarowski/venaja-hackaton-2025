@@ -1,4 +1,5 @@
 import './App.css';
+import { Panel } from './components/Panel/Panel';
 import Participant from './components/Participant/Participant';
 import Volunteer from './VolunteerPage/Volunteer';
 
@@ -12,10 +13,9 @@ function App() {
           <h1>Сбер. Страница Волонтерства</h1>
         </div>
       </header>
-      <Participant></Participant>
-      <Participant></Participant>
-      <Participant></Participant>
-      <Participant></Participant>
+
+      <Panel></Panel>
+
       <footer>
         <p>Power by Maxeeb & Tretchian</p>
       </footer>
