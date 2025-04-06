@@ -19,6 +19,8 @@ transition: background-color 0.5s ease, color 0.5s ease;
 min-width: 100px;
 width: 300px;
 padding: 0 2rem;
+border: none;
+outline: none;
 }
 
 .button-active {
@@ -109,6 +111,7 @@ box-sizing: border-box;
   padding: 10px 20px;
   margin: 5px 10px;
   border-radius: 0.5rem;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* Стили для блока с основной информацией */
@@ -185,8 +188,9 @@ box-sizing: border-box;
   width: 100%;
   border-radius: 0.5rem;
   height: 25px;
+  border: none;
+outline: none;
 }
-
 
 .button-container {
   flex-grow: 1; /* Занимает всё оставшееся пространство */
@@ -195,9 +199,6 @@ box-sizing: border-box;
   padding: 5px; /* Кнопка прилипает к правому краю */
 }
 
-
-
-  
 .modal-content button {
   padding: 10px 20px;
   margin-top: 20px;
@@ -221,4 +222,18 @@ box-sizing: border-box;
 .request-paticipance:disabled:hover {
   background-color: rgb(204, 204, 204); /* или тот же цвет, что и без hover */
   color: #666;
+}
+
+.text-inactive {
+  width: 100%;
+  background-color: rgb(210, 217, 222); /* bg-gray-200 */
+  color: #666; /* Цвет текста для выключенной кнопки */
+  border-radius: 0.5rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  padding: 1px 6px;
+  font-size: 13.333px;
 }
