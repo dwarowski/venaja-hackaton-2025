@@ -8,7 +8,7 @@ import {
   CompletionEvent,
   EventRequest 
 } from './components/shared/interfaces';
-import './VolunteerPage.css';
+import './Organiser.css';
 
 
 const OrganiserPage: React.FC = () => {
