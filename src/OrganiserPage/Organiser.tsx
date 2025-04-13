@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import UpcomingEvents from './components/sections/UpcomingEvents';
 import NewEventModal from './components/modals/NewEventModal';
 import CompletionEvents from './components/sections/CompletionEvents';
@@ -8,12 +8,26 @@ import {
   CompletionEvent,
   EventRequest 
 } from './components/shared/interfaces';
-import './Organiser.css';
+
+
 
 
 const OrganiserPage: React.FC = () => {
+  const tabsRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (tabsRef.current) {
+      tabsRef.current.scrollBy({ left: -150, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (tabsRef.current) {
+      tabsRef.current.scrollBy({ left: 150, behavior: 'smooth' });
+    }
+  };
+
   const [activeTab, setActiveTab] = useState<'upcoming' | 'pending' | 'completion'>('upcoming');
-  const [showNewEventForm, setShowNewEventForm] = useState(false);
   const [events, setEvents] = useState<Event[]>([
     {
       id: 1,
@@ -56,7 +70,6 @@ const OrganiserPage: React.FC = () => {
       ]
     }
   ]);
-
   const [pendingApps, setPendingApps] = useState<Application[]>([
     {
       id: 1,
@@ -87,8 +100,6 @@ const OrganiserPage: React.FC = () => {
       status: "pending",
     },
   ]);
-
-  
   const [completionEvents, setCompletionEvents] = useState<CompletionEvent[]>([
     {
       id: 1,
@@ -110,8 +121,8 @@ const OrganiserPage: React.FC = () => {
     },
     // ... другие мероприятия
   ]);
+  const [showNewEventForm, setShowNewEventForm] = useState(false);
 
-  
 
   const handleAcceptApplication = (eventId: number, appId: number) => {
     setEvents(events.map(event => {
@@ -154,7 +165,6 @@ const OrganiserPage: React.FC = () => {
       participants: [],
       applications: []
     }]);
-    setShowNewEventForm(false);
   };
 
   const PendingApplications: React.FC<{ 
@@ -214,29 +224,46 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
  
 
   return (
-    <div className="organiser-page">
-      <div className="tabs-container">
-        <button
-          className={`tab-button ${activeTab === 'upcoming' ? 'active' : ''}`}
-          onClick={() => setActiveTab('upcoming')}
-        >
-          Предстоящие мероприятия
-        </button>
-        <button
-          className={`tab-button ${activeTab === 'pending' ? 'active' : ''}`}
-          onClick={() => setActiveTab('pending')}
-        >
-          Заявки на рассмотрении
-        </button>
-        <button
-          className={`tab-button ${activeTab === 'completion' ? 'active' : ''}`}
-          onClick={() => setActiveTab('completion')}
-        >
-          Требующие завершения
-        </button>
+    <div className="parent">
+      <div className="tabs-row">
+        <button className="scroll-button left" onClick={scrollLeft}>←</button>
+
+        <div className="tabs-container" ref={tabsRef}>
+          <button
+            className={`tab-button ${activeTab === 'upcoming' ? 'button-active' : 'button-inactive'}`}
+            onClick={() => {
+              setActiveTab('upcoming');
+              setShowNewEventForm(false);
+            }}
+          >
+            Предстоящие мероприятия
+          </button>
+          <button
+            className={`tab-button ${activeTab === 'pending' ? 'button-active' : 'button-inactive'}`}
+            onClick={() => {setActiveTab('pending'); setShowNewEventForm(false);}}
+          >
+            Заявки на рассмотрении
+          </button>
+          <button
+            className={`tab-button ${activeTab === 'completion' ? 'button-active' : 'button-inactive'}`}
+            onClick={() => {setActiveTab('completion'); setShowNewEventForm(false);}}
+          >
+            Требующие завершения
+          </button>
+          <button
+              className={`tab-button ${showNewEventForm ? 'button-active' : 'button-inactive'}`}
+              onClick={() => setShowNewEventForm(true)
+            }
+          >
+            Подать заявку на новое мероприятие
+          </button>
+        </div>
+        <button className="scroll-button right" onClick={scrollRight}>→</button>
       </div>
 
-      <div className="content-area">
+
+      <div className="child">
+        <div className='EventsList'>
       {activeTab === 'upcoming' && (
         <>
           <UpcomingEvents 
@@ -244,13 +271,8 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
             onAcceptApplication={handleAcceptApplication}
             onRejectApplication={handleRejectApplication}
           />
-          <button 
-            className="new-application-button"
-            onClick={() => setShowNewEventForm(true)}
-          >
-            Подать заявку на новое мероприятие
-          </button>
         </>
+
       )}
 
       {activeTab === 'pending' && (
@@ -266,14 +288,15 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
           onComplete={handleCompleteEvent}
         />
       )}
-
-      {/* Модальное окно для новой заявки */}
       {showNewEventForm && (
         <NewEventModal
           onCreate={handleCreateEvent}
           onClose={() => setShowNewEventForm(false)}
         />
       )}
+</div>
+
+
     </div>
     </div>
   );

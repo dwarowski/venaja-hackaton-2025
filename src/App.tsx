@@ -15,8 +15,7 @@ function App() {
           <a href="http://www.sberbank.ru"><img src="/logo.svg" className = "header-logo"/></a>
         </div>
       </header>
-      {/* <Volunteer></Volunteer>
-       */}
+      {/* <Volunteer></Volunteer> */}
        <OrganiserPage></OrganiserPage>
       <footer>
         <p>Powered by Venaja</p>

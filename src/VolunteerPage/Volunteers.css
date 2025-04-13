@@ -1,93 +1,12 @@
 /* Volunteer.css */
 
 
-.button {
-display: flex;
-justify-content: center; /* Центрирование текста по горизонтали */
-align-items: center; /* Центрирование текста по вертикали */
-height: 2.5rem; /* Высота кнопки */
-padding: 0 1rem; /* Отступы по бокам */
-border-radius: 0.5rem;
-font-weight: 500;
-line-height: 2rem; /* Высота строки текста */
-border: none;
-outline: none;
-}
 
-.child.buttons button {
-transition: background-color 0.5s ease, color 0.5s ease;
-min-width: 100px;
-width: 300px;
-padding: 0 2rem;
-border: none;
-outline: none;
-}
 
-.button-active {
-background-color: rgb(36, 178, 62); /* bg-blue-600 */
-color: white;
-}
 
-.button-active:hover {
-background-color: rgb(28, 109, 43); /* bg-blue-600 */
-color: white;
-}
-
-.button-inactive {
-background-color: rgb(228,235,240); /* bg-gray-200 */
-}
-
-.button-inactive:hover {
-background-color: rgb(180, 183, 185);
-}
-
-.parent {
-display: flex;
-flex-direction: column;
-gap: 1rem;
-min-width: 500px;
-width: 900px;
-margin: 0 auto;
-padding: 9px;
-
-height: calc(100vh - 50px); /* Высота родителя — 100vh минус высота футера */
-box-sizing: border-box;
-}
   
-.child {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    margin: 10px 5% 10px 5%;/* Расстояние между кнопками */
-    box-sizing: border-box;
-}
 
-.child.buttons {
-    flex-shrink: 0; /* Не растягивается */
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 30px;
-    gap: 1rem;
-}
 
-.child:not(.buttons) {
-flex: 1; /* Растягивается */
-display: flex;
-flex-direction: column;
-margin: 10px 5%;
-box-sizing: border-box;
-}
-
-.EventsList {
-  flex-grow: 1; /* Растягиваем блок, чтобы он занимал оставшееся пространство */
-  border-radius: 0.5rem;
-  background-color: rgb(242, 245, 247);
-  width: 100%;
-  height: 500px;
-  overflow-y: auto; /* Включаем вертикальную прокрутку */
-  padding: 1rem;
-  box-sizing: border-box;
-  }
   
 /* Стили для списка событий */
 .events-list {

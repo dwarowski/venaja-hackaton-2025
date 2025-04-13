@@ -8,24 +8,22 @@ const UpcomingEvents: React.FC<{
   onRejectApplication: (eventId: number, appId: number) => void;
 }> = ({ events, onAcceptApplication, onRejectApplication }) => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+    const [showNewEventForm, setShowNewEventForm] = useState(false);
 
   return (
-    <div className="events-container">
-      {events.map((event) => (
-        <div key={event.id} className="event-card">
-          <div className="event-header">
-            <div className="event-time">{event.time}</div>
-            <div className="event-description">{event.description}</div>
-            <button 
-              className="toggle-button"
-              onClick={() => setSelectedEvent(event)}
-            >
-              Показать участников
-            </button>
-          </div>
-        </div>
-      ))}
-      
+    <div>
+      <ul className = "events-list">
+        {events.map((event, index) => (
+          <li key={index} onClick={() => setSelectedEvent(event)}>
+            <div key={event.id} className="event-card">
+              <div className="event-header">
+                <div className="event-time">{event.time}</div>
+                <div className="event-description">{event.description}</div>
+              </div>
+            </div>
+          </li>
+                ))}
+      </ul>     
       {selectedEvent && (
         <EventDetailsModal
           event={selectedEvent}
@@ -35,6 +33,8 @@ const UpcomingEvents: React.FC<{
         />
       )}
     </div>
+
+
   );
 };
 

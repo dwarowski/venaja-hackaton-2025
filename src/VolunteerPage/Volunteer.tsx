@@ -71,20 +71,20 @@ const events = [
           className={`button ${activeTab === 'my' ? 'button-active' : 'button-inactive'}`}
           onClick={() => setActiveTab('my')}
         >
-          <p>Мои события</p>
+          Мои события
         </button>
         <button
           className={`button ${activeTab === 'future' ? 'button-active' : 'button-inactive'}`}
           onClick={() => setActiveTab('future')}
         >
-          <p>Будущие события</p>
+          Будущие события
         </button>
 
         <button
           className={`button ${activeTab === 'past' ? 'button-active' : 'button-inactive'}`}
           onClick={() => setActiveTab('past')}
         >
-          <p>Завершенные события</p>
+          Завершенные события
         </button>
       </div>
       <div className="child">

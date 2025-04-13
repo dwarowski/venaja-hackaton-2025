@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Event, Application, Participant } from '../shared/interfaces';
+import '../../Organiser.css';
 
 const EventDetailsModal: React.FC<{
   event: Event;
@@ -10,7 +10,7 @@ const EventDetailsModal: React.FC<{
 }> = ({ event, onClose, onAccept, onReject }) => (
   <div className="modal-overlay">
     <div className="details-modal">
-      <div className="modal-header">
+      <div className="modal-header">S
         <h2>{event.description}</h2>
         <button className="close-button" onClick={onClose}>×</button>
       </div>
