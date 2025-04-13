@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { formatDate, formatTimeRange } from '../../../global_functions/Datetime_redact';
 // Импортируем необходимые интерфейсы
 import { CompletionEvent, Attendance, Participant } from '../shared/interfaces';
 
@@ -47,7 +48,7 @@ const CompletionModal: React.FC<CompletionModalProps> = ({
           {event.participants.map((participant: Participant) => (
             <div key={participant.id} className="participant-row">
               <div>{participant.name} {participant.surname}</div>
-              <div>{participant.birthDate}</div>
+              <div>{formatDate(participant.birthDate)}</div>
               <input
                 type="checkbox"
                 checked={attendances.find((a: Attendance) => 

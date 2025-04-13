@@ -1,6 +1,7 @@
 import React from 'react';
 import { Event, Application, Participant } from '../shared/interfaces';
 import '../../Organiser.css';
+import {TimeRange, formatDate, formatTimeRange} from '../../../global_functions/Datetime_redact'
 
 const EventDetailsModal: React.FC<{
   event: Event;
@@ -30,7 +31,7 @@ const EventDetailsModal: React.FC<{
               {event.participants.map(participant => (
                 <tr key={participant.id}>
                   <td>{participant.name} {participant.surname}</td>
-                  <td>{participant.birthDate}</td>
+                  <td>{formatDate(participant.birthDate)}</td>
                 </tr>
               ))}
             </tbody>
@@ -52,7 +53,7 @@ const EventDetailsModal: React.FC<{
               {event.applications.map(app => (
                 <tr key={app.id}>
                   <td>{app.name} {app.surname}</td>
-                  <td>{app.birthDate}</td>
+                  <td>{formatDate(app.birthDate)}</td>
                   <td>
                     <div className="actions">
                       <button 

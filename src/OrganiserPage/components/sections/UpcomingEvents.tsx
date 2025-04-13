@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EventDetailsModal from '../modals/EventDetailsModal';
 import { Event } from '../shared/interfaces';
+import {formatDate, formatTimeRange, TimeRange} from '../../../global_functions/Datetime_redact';
 
 const UpcomingEvents: React.FC<{ 
   events: Event[];
@@ -15,14 +16,15 @@ const UpcomingEvents: React.FC<{
       <ul className = "events-list">
         {events.map((event, index) => (
           <li key={index} onClick={() => setSelectedEvent(event)}>
-            <div key={event.id} className="event-card">
-              <div className="event-header">
-                <div className="event-time">{event.time}</div>
-                <div className="event-description">{event.description}</div>
+            <div key={event.id} className="event-item">
+              <div className="volunteer__my-events_el_title-box">
+                <p className="volunteer__my-events_el_title-box_name">{event.title}</p>
+                <p className="volunteer__my-events_el_title-box_time">{formatDate(event.eventDate[0])},  {formatTimeRange(event.eventDate)}</p>
               </div>
+              <p className='event-description'>{event.description}</p>
             </div>
           </li>
-                ))}
+          ))}
       </ul>     
       {selectedEvent && (
         <EventDetailsModal

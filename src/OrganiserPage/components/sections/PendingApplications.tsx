@@ -2,7 +2,7 @@
   // PendingApplications.tsx
 import React from 'react';
 import { EventRequest } from '../shared/interfaces'; // Правильный путь к интерфейсам
-
+import { TimeRange, formatTimeRange, formatDate } from '../../../global_functions/Datetime_redact';
 
   const  PendingApplications: React.FC<{ 
   requests: EventRequest[];
@@ -11,7 +11,7 @@ import { EventRequest } from '../shared/interfaces'; // Правильный п�
   <div className="applications-container">
     {requests.map((request) => (
       <div key={request.id} className="application-card">
-        <div className="event-time">{request.eventTime}</div>
+        <div className="event-time">{formatTimeRange(request.eventTime)}</div>
         <div className="event-description">{request.description}</div>
         <div className="application-status-row">
           <span className={`status-indicator ${request.status}`}>
@@ -21,7 +21,7 @@ import { EventRequest } from '../shared/interfaces'; // Правильный п�
           </span>
           <div className="request-actions">
             <span className="request-date">
-              {request.creationDate}
+              {formatDate(request.creationDate)}
             </span>
             <button 
               className="delete-button"

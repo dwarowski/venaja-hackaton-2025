@@ -8,6 +8,7 @@ import {
   CompletionEvent,
   EventRequest 
 } from './components/shared/interfaces';
+import { TimeRange, formatDate, formatTimeRange } from '../global_functions/Datetime_redact';
 
 
 
@@ -31,40 +32,38 @@ const OrganiserPage: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([
     {
       id: 1,
-      time: '10:00 — 12:00',
-      description: 'IT-волонтерство для начинающих',
-      startDate: '2023-12-01T10:00',
-      endDate: '2023-12-01T12:00',
+      title: 'IT-волонтерство для начинающих',
+      description: 'IT-волонтерство для начинающихfaghsjkl;asassa',
+      eventDate: [new Date('2023-12-01T10:00'), new Date('2023-12-01T12:00')] as TimeRange,
       participants: [
-        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: '15.05.1990' },
-        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: '22.08.1985' }
+        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('15.05.1990') },
+        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('22.08.1985') }
       ],
       applications: [
         { 
           id: 1, 
           name: 'Алексей', 
           surname: 'Смирнов', 
-          birthDate: '10.03.1995',
+          birthDate: new Date('10.03.1995'),
           status: 'pending'
         }
       ]
     },
     {
       id: 2,
-      time: '14:00 — 16:00',
-      description: 'IT-ХИ-ХИ для начинающих',
-      startDate: '2023-12-01T10:00',
-      endDate: '2023-12-01T12:00',
+      title: 'IT-ХИ-ХИ для начинающих',
+      description: 'IT-ХИ-ХИ для начинающих fuhuhuhuhu',
+      eventDate: [new Date('2023-12-01T14:00'), new Date('2023-12-01T16:00')] as TimeRange,
       participants: [
-        { id: 1, name: 'Иван', surname: 'Запара', birthDate: '15.05.1990' },
-        { id: 2, name: 'Запар', surname: 'Ива', birthDate: '22.08.1985' }
+        { id: 1, name: 'Иван', surname: 'Запара', birthDate: new Date('15.05.1990') },
+        { id: 2, name: 'Запар', surname: 'Ива', birthDate: new Date('22.08.1985') }
       ],
       applications: [
         { 
           id: 1, 
           name: 'ИИИИИИВАААААААН', 
           surname: 'ЗАПААААААААРА', 
-          birthDate: '10.03.1995',
+          birthDate: new Date('10.03.1995'),
           status: 'pending'
         }
       ]
@@ -75,51 +74,50 @@ const OrganiserPage: React.FC = () => {
       id: 1,
       name: "Ольга",
       surname: "Иванова",
-      birthDate: "05.12.1998",
+      birthDate: new Date("05.12.1998"),
       status: "pending",
     },
     {
       id: 2,
       name: "Дмитрий",
       surname: "Соколов",
-      birthDate: "22.07.2001",
+      birthDate: new Date("22.07.2001"),
       status: "pending",
     },
     {
       id: 3,
       name: "Анна",
       surname: "Кузнецова",
-      birthDate: "14.03.1995",
+      birthDate: new Date("14.03.1995"),
       status: "pending",
     },
     {
       id: 4,
       name: "Иван",
       surname: "Петров",
-      birthDate: "30.09.1989",
+      birthDate: new Date("30.09.1989"),
       status: "pending",
     },
   ]);
   const [completionEvents, setCompletionEvents] = useState<CompletionEvent[]>([
     {
       id: 1,
-      time: '10:00 — 12:00',
+      eventTime: [new Date('2023-12-01T10:00'), new Date('2023-12-01T12:00')] as TimeRange,
       description: 'IT-волонтерство для начинающих',
       participants: [
-        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: '15.05.1990' },
-        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: '22.08.1985' }
+        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('15.05.1990') },
+        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('22.08.1985') }
       ]
     },
     {
       id: 2,
-      time: '12:00 — 14:00',
+      eventTime: [new Date('2023-12-01T14:00'), new Date('2023-12-01T14:00')] as TimeRange,
       description: 'IT-ХИ-ХИ для ха-ха',
       participants: [
-        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: '15.05.1990' },
-        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: '22.08.1985' }
+        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('15.05.1990') },
+        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('22.08.1985') }
       ]
     },
-    // ... другие мероприятия
   ]);
   const [showNewEventForm, setShowNewEventForm] = useState(false);
 
@@ -174,7 +172,7 @@ const OrganiserPage: React.FC = () => {
   <div className="applications-container">
     {requests.map((request) => (
       <div key={request.id} className="application-card">
-        <div className="event-time">{request.eventTime}</div>
+        <div className="event-time">{formatTimeRange(request.eventTime)}</div>
         <div className="event-description">{request.description}</div>
         <div className="application-status-row">
           <span className={`status-indicator ${request.status}`}>
@@ -184,7 +182,7 @@ const OrganiserPage: React.FC = () => {
           </span>
           <div className="request-actions">
             <span className="request-date">
-              {request.creationDate}
+              {formatDate(request.creationDate)}
             </span>
             <button 
               className="delete-button"
@@ -202,17 +200,17 @@ const OrganiserPage: React.FC = () => {
 const [eventRequests, setEventRequests] = useState<EventRequest[]>([
   {
     id: 1,
-    eventTime: '10:00 — 12:00',
+    eventTime: [new Date('2023-12-01T10:00'), new Date('2023-12-01T12:00')] as TimeRange,
     description: 'IT-волонтерство для начинающих',
     status: 'pending',
-    creationDate: '01.12.2023'
+    creationDate: new Date('01.12.2023')
   },
   {
     id: 2,
-    eventTime: '14:00 — 16:00',
+    eventTime: [new Date('2023-12-01T14:00'), new Date('2023-12-01T16:00')] as TimeRange,
     description: 'Обучение цифровой грамотности',
     status: 'rejected',
-    creationDate: '02.12.2023'
+    creationDate: new Date('02.12.2023')
   }
 ]);
 
@@ -221,8 +219,6 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
     setEventRequests(eventRequests.filter(r => r.id !== requestId));
   };
   
- 
-
   return (
     <div className="parent">
       <div className="tabs-row">

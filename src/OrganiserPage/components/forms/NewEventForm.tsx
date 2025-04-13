@@ -11,17 +11,18 @@ const NewEventForm: React.FC<{
   onCreate: (newEvent: Omit<Event, 'id' | 'participants' | 'applications'>) => void;
   onCancel: () => void;
 }> = ({ onCreate, onCancel }) => {
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onCreate({
+      title,
       description,
-      time: `${startDate} - ${endDate}`,
-      startDate,
-      endDate,
+      eventDate: [new Date(startDate), new Date(endDate)],
     });
   };
 

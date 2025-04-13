@@ -148,3 +148,57 @@ background-color: rgb(180, 183, 185);
   padding: 1rem;
   box-sizing: border-box;
 }
+
+.volunteer__my-events_el_title-box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60% 1fr;
+}
+
+.volunteer__my-events_el_title-box_name {
+  font-weight: bold;
+  font-size: large;
+}
+
+.volunteer__my-events_el_title-box_time {
+  text-align: end;
+}
+
+.volunteer__future-events_button-container {
+  margin: auto;
+
+}
+
+.volunteer__future-events_button {
+  margin: 0px 0px 0px 20px; 
+}
+
+.event-item {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(228, 235, 240);
+  padding: 10px 20px;
+  margin: 5px 10px;
+  border-radius: 0.5rem;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+  /* Стили для описания события (ограничение текста с троеточием) */
+.event-description {
+  white-space: nowrap; /* Запрещаем перенос строки */
+  overflow: hidden; /* Скрываем переполнение */
+  text-overflow: ellipsis; /* Добавляем троеточие в конце */
+  color: rgba(61, 49, 49, .9);
+  margin: 0;
+}
+
+  /* Стили для списка событий */
+.events-list {
+  list-style: none; /* Убираем стандартные маркеры списка */
+  padding: 0;
+  margin: 0;
+}
+
+.event-item:hover {
+  background-color: rgb(204, 210, 214);
+}

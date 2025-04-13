@@ -3,7 +3,8 @@
 
 // CompletionEvents.tsx
 import React, { useState } from 'react';
-import CompletionModal from '../modals/CompletionModal'; // Проверьте путь!
+import CompletionModal from '../modals/CompletionModal';
+import { formatDate, formatTimeRange, TimeRange } from '../../../global_functions/Datetime_redact'; 
 import { CompletionEvent, Participant, Attendance } from '../shared/interfaces'; // Импорт интерфейсо
 const CompletionEvents: React.FC<{ 
   events: CompletionEvent[];
@@ -15,7 +16,7 @@ const CompletionEvents: React.FC<{
     <div className="events-container">
       {events.map((event) => (
         <div key={event.id} className="event-card completion-card">
-          <div className="event-time">{event.time}</div>
+          <div className="event-time">{formatTimeRange(event.eventTime)}</div>
           <div className="event-description">{event.description}</div>
           <button 
             className="complete-button"

@@ -1,34 +1,35 @@
+import { TimeRange } from "../../../global_functions/Datetime_redact";
+
 export interface Participant {
     id: number;
     name: string;
     surname: string;
-    birthDate: string;
+    birthDate: Date;
   }
   
   export interface Application {
     id: number;
     name: string;
     surname: string;
-    birthDate: string;
+    birthDate: Date;
     status: 'pending' | 'approved' | 'rejected';
   }
   
   export interface Event {
     id: number;
-    time: string;
+    title: string;
     description: string;
     participants: Participant[];
     applications: Application[];
-    startDate: string;
-    endDate: string;
+    eventDate: TimeRange;
   }
   
   export interface EventRequest {
     id: number;
-    eventTime: string;
+    eventTime: TimeRange;
     description: string;
     status: 'pending' | 'rejected';
-    creationDate: string;
+    creationDate: Date;
   }
   
   export interface Attendance {
@@ -38,7 +39,7 @@ export interface Participant {
   
   export interface CompletionEvent {
     id: number;
-    time: string;
+    eventTime: TimeRange;
     description: string;
     participants: Participant[];
   }
