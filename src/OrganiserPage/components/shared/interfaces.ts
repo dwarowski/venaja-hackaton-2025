@@ -1,4 +1,5 @@
 import { TimeRange } from "../../../global_functions/Datetime_redact";
+import { Event } from '../../../global_functions/global_interfaces';
 
 export interface Participant {
     id: number;
@@ -15,13 +16,9 @@ export interface Participant {
     status: 'pending' | 'approved' | 'rejected';
   }
   
-  export interface Event {
-    id: number;
-    title: string;
-    description: string;
+  export interface EventForOrganiser extends Event {
     participants: Participant[];
     applications: Application[];
-    eventDate: TimeRange;
   }
   
   export interface EventRequest {

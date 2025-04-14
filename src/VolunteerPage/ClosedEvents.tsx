@@ -1,44 +1,19 @@
 import React, { useState } from 'react';
 import { TimeRange, formatDate, formatTimeRange } from '../global_functions/Datetime_redact';
-
-// Интерфейс для события
-interface Event {
-  title: string;
-  date: TimeRange;
-  description: string;
-  accepted: boolean;
-}
+import { EventForVolunteer } from './Volunteer';
+import { useModal } from '../global_functions/Modal_window';
 
 interface EventsProps {
-  events: Event[];
+  events: EventForVolunteer[];
 }
 
 // Компонент для отображения списка событий
-const FutureEvents: React.FC<EventsProps> = ({ events }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [selectedEventIndex, setSelectedEventIndex] = useState<number | null>(null);
+const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
+  const { isModalOpen, isClosing, selectedEvent, openModal, closeModal } = useModal();
+  const volunteerEvent = selectedEvent?.event as EventForVolunteer | null;
+
 
   const [requestedEvents, setRequestedEvents] = useState<number[]>([]);
-
-  // Открытие модального окна
-  const openModal = (event: Event, index: number) => {
-    setSelectedEvent(event);
-    setSelectedEventIndex(index);
-    setIsModalOpen(true);
-    setIsClosing(false);
-  };
-
-  // Закрытие модального окна
-  const closeModal = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setIsModalOpen(false);
-      setSelectedEvent(null);
-      setSelectedEventIndex(null);
-    }, 300);
-  };
 
   // Обработка запроса на участие в мероприятии
   const handleRequest = (index: number) => {
@@ -74,23 +49,20 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
     <div>
       <ul className="events-list">
         {events.map((event, index) => {
-          const { text, disabled } = getButtonState(index);
-
           return (
             <li key={index} onClick={() => openModal(event, index)}>
               <div className="event-item">
                 <div className="event-content">
                   <div className="event-box">
-                    <div className='volunteer__my-events_el_title-box'>
-                      <p className='volunteer__my-events_el_title-box_name'>{event.title}</p>
-                      <p className='volunteer__my-events_el_title-box_time'>{formatDate(event.date[0])},  {formatTimeRange(event.date)} </p>
+                    <div className='events_el_title-box'>
+                      <p className='events_el_title-box_name'>{event.title}</p>
+                      <p className='events_el_title-box_time'>{formatDate(event.eventDate[0])}, {formatTimeRange(event.eventDate)} </p>
                     </div>
                     <p className='event-description'>{event.description}</p>
                   </div>
                   <div className="button-container">
-                    {/* Здесь выводим либо текст "Отсутствовал", либо разницу во времени */}
                     {event.accepted ? (
-                      <p className="text-inactive volunteer__future-events_button">+ {calculateTimeDifference(event.date)} часов</p>
+                      <p className="text-inactive volunteer__future-events_button">+ {calculateTimeDifference(event.eventDate)} часов</p>
                     ) : (
                       <p className="text-inactive volunteer__future-events_button">Отсутствовал</p>
                     )}
@@ -103,19 +75,19 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
       </ul>
 
       {/* Модальное окно */}
-      {isModalOpen && selectedEvent !== null && selectedEventIndex !== null && (
+      {isModalOpen && volunteerEvent !== null && (
         <div
           className={`modal-overlay ${isModalOpen ? 'open' : ''} ${isClosing ? 'closing' : ''}`}
           onClick={closeModal}
         >
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h1><strong>Название:</strong> {selectedEvent.title}</h1>
-            <p><strong>Дата:</strong> {formatDate(selectedEvent.date[0])}</p>
-            <p><strong>Время:</strong> {formatTimeRange(selectedEvent.date)}</p>
-            <p><strong>Описание:</strong> {selectedEvent.description}</p>
+          <div className="modal-content volunteers-modal" onClick={(e) => e.stopPropagation()}>
+            <h1><strong>Название:</strong> {volunteerEvent.title}</h1>
+            <p><strong>Дата:</strong> {formatDate(volunteerEvent.eventDate?.[0])}</p>
+            <p><strong>Время:</strong> {formatTimeRange(volunteerEvent.eventDate)}</p>
+            <p><strong>Описание:</strong> {volunteerEvent.description}</p>
 
-            {selectedEvent.accepted ? (
-              <p><strong>Статус:</strong> {calculateTimeDifference(selectedEvent.date)} часов</p>
+            {volunteerEvent.accepted ? (
+              <p><strong>Статус:</strong> {calculateTimeDifference(volunteerEvent.eventDate)} часов</p>
             ) : (
               <p><strong>Статус:</strong> Отсутствовал</p>
             )}
@@ -128,4 +100,4 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
   );
 };
 
-export default FutureEvents;
+export default ClosedEvents;

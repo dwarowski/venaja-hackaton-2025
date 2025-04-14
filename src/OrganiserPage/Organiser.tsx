@@ -3,13 +3,13 @@ import UpcomingEvents from './components/sections/UpcomingEvents';
 import NewEventModal from './components/modals/NewEventModal';
 import CompletionEvents from './components/sections/CompletionEvents';
 import { 
-  Event, 
+  EventForOrganiser, 
   Application, 
   CompletionEvent,
   EventRequest 
 } from './components/shared/interfaces';
 import { TimeRange, formatDate, formatTimeRange } from '../global_functions/Datetime_redact';
-
+import { useModal } from '../global_functions/Modal_window';
 
 
 
@@ -29,22 +29,79 @@ const OrganiserPage: React.FC = () => {
   };
 
   const [activeTab, setActiveTab] = useState<'upcoming' | 'pending' | 'completion'>('upcoming');
-  const [events, setEvents] = useState<Event[]>([
+  const [events, setEvents] = useState<EventForOrganiser[]>([
     {
       id: 1,
       title: 'IT-волонтерство для начинающих',
       description: 'IT-волонтерство для начинающихfaghsjkl;asassa',
-      eventDate: [new Date('2023-12-01T10:00'), new Date('2023-12-01T12:00')] as TimeRange,
+      eventDate: [new Date('2023-12-01T10:00:00'), new Date('2023-12-01T12:00:00')] as TimeRange,
       participants: [
-        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('15.05.1990') },
-        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('22.08.1985') }
+        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
+        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22') },
+        { id: 3, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
+        { id: 4, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
+        { id: 5, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
+        { id: 6, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
+        { id: 7, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
+        { id: 8, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
+        { id: 9, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
+        { id: 10, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') }
       ],
       applications: [
         { 
           id: 1, 
           name: 'Алексей', 
           surname: 'Смирнов', 
-          birthDate: new Date('10.03.1995'),
+          birthDate: new Date('1995-03-10'),
+          status: 'pending'
+        },
+        { 
+          id: 2, 
+          name: 'Алексей', 
+          surname: 'Смирнов', 
+          birthDate: new Date('1995-03-10'),
+          status: 'pending'
+        },
+        { 
+          id: 3, 
+          name: 'Алексей', 
+          surname: 'Смирнов', 
+          birthDate: new Date('1995-03-10'),
+          status: 'pending'
+        },
+        { 
+          id: 4, 
+          name: 'Алексей', 
+          surname: 'Смирнов', 
+          birthDate: new Date('1995-03-10'),
+          status: 'pending'
+        },
+        { 
+          id: 5, 
+          name: 'Алексей', 
+          surname: 'Смирнов', 
+          birthDate: new Date('1995-03-10'),
+          status: 'pending'
+        },
+        { 
+          id: 6, 
+          name: 'Алексей', 
+          surname: 'Смирнов', 
+          birthDate: new Date('1995-03-10'),
+          status: 'pending'
+        },
+        { 
+          id: 7, 
+          name: 'Алексей', 
+          surname: 'Смирнов', 
+          birthDate: new Date('1995-03-10'),
+          status: 'pending'
+        },
+        { 
+          id: 8, 
+          name: 'Алексей', 
+          surname: 'Смирнов', 
+          birthDate: new Date('1995-03-10'),
           status: 'pending'
         }
       ]
@@ -53,72 +110,75 @@ const OrganiserPage: React.FC = () => {
       id: 2,
       title: 'IT-ХИ-ХИ для начинающих',
       description: 'IT-ХИ-ХИ для начинающих fuhuhuhuhu',
-      eventDate: [new Date('2023-12-01T14:00'), new Date('2023-12-01T16:00')] as TimeRange,
+      eventDate: [new Date('2023-12-01T14:00:00'), new Date('2023-12-01T16:00:00')] as TimeRange,
       participants: [
-        { id: 1, name: 'Иван', surname: 'Запара', birthDate: new Date('15.05.1990') },
-        { id: 2, name: 'Запар', surname: 'Ива', birthDate: new Date('22.08.1985') }
+        { id: 1, name: 'Иван', surname: 'Запара', birthDate: new Date('1990-05-15') },
+        { id: 2, name: 'Запар', surname: 'Ива', birthDate: new Date('1985-08-22') }
       ],
       applications: [
         { 
           id: 1, 
           name: 'ИИИИИИВАААААААН', 
           surname: 'ЗАПААААААААРА', 
-          birthDate: new Date('10.03.1995'),
+          birthDate: new Date('1995-03-10'),
           status: 'pending'
         }
       ]
     }
   ]);
+  
   const [pendingApps, setPendingApps] = useState<Application[]>([
     {
       id: 1,
       name: "Ольга",
       surname: "Иванова",
-      birthDate: new Date("05.12.1998"),
+      birthDate: new Date("1998-12-05"),
       status: "pending",
     },
     {
       id: 2,
       name: "Дмитрий",
       surname: "Соколов",
-      birthDate: new Date("22.07.2001"),
+      birthDate: new Date("2001-07-22"),
       status: "pending",
     },
     {
       id: 3,
       name: "Анна",
       surname: "Кузнецова",
-      birthDate: new Date("14.03.1995"),
+      birthDate: new Date("1995-03-14"),
       status: "pending",
     },
     {
       id: 4,
       name: "Иван",
       surname: "Петров",
-      birthDate: new Date("30.09.1989"),
+      birthDate: new Date("1989-09-30"),
       status: "pending",
     },
   ]);
+  
   const [completionEvents, setCompletionEvents] = useState<CompletionEvent[]>([
     {
       id: 1,
-      eventTime: [new Date('2023-12-01T10:00'), new Date('2023-12-01T12:00')] as TimeRange,
+      eventTime: [new Date('2023-12-01T10:00:00'), new Date('2023-12-01T12:00:00')] as TimeRange,
       description: 'IT-волонтерство для начинающих',
       participants: [
-        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('15.05.1990') },
-        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('22.08.1985') }
+        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date("1990-05-15") },
+        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date("1985-08-22") }
       ]
     },
     {
       id: 2,
-      eventTime: [new Date('2023-12-01T14:00'), new Date('2023-12-01T14:00')] as TimeRange,
+      eventTime: [new Date('2023-12-01T14:00:00'), new Date('2023-12-01T14:00:00')] as TimeRange,
       description: 'IT-ХИ-ХИ для ха-ха',
       participants: [
-        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('15.05.1990') },
-        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('22.08.1985') }
+        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
+        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22') }
       ]
     },
   ]);
+  
   const [showNewEventForm, setShowNewEventForm] = useState(false);
 
 
@@ -156,7 +216,7 @@ const OrganiserPage: React.FC = () => {
     }));
   };
 
-  const handleCreateEvent = (newEvent: Omit<Event, 'id' | 'participants' | 'applications'>) => {
+  const handleCreateEvent = (newEvent: Omit<EventForOrganiser, 'id' | 'participants' | 'applications'>) => {
     setEvents([...events, {
       ...newEvent,
       id: Date.now(),
@@ -260,40 +320,35 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
 
       <div className="child">
         <div className='EventsList'>
-      {activeTab === 'upcoming' && (
-        <>
-          <UpcomingEvents 
-            events={events}
-            onAcceptApplication={handleAcceptApplication}
-            onRejectApplication={handleRejectApplication}
-          />
-        </>
+          {activeTab === 'upcoming' && (
+              <UpcomingEvents 
+                events={events}
+                onAcceptApplication={handleAcceptApplication}
+                onRejectApplication={handleRejectApplication}
+              />
+          )}
 
-      )}
+          {activeTab === 'pending' && (
+            <PendingApplications 
+              requests={eventRequests}
+              onDelete={handleDeleteRequest}
+            />
+          )}
 
-      {activeTab === 'pending' && (
-        <PendingApplications 
-          requests={eventRequests}
-          onDelete={handleDeleteRequest}
-        />
-      )}
-
-      {activeTab === 'completion' && (
-        <CompletionEvents 
-          events={completionEvents}
-          onComplete={handleCompleteEvent}
-        />
-      )}
-      {showNewEventForm && (
-        <NewEventModal
-          onCreate={handleCreateEvent}
-          onClose={() => setShowNewEventForm(false)}
-        />
-      )}
-</div>
-
-
-    </div>
+          {activeTab === 'completion' && (
+            <CompletionEvents 
+              events={completionEvents}
+              onComplete={handleCompleteEvent}
+            />
+          )}
+          {showNewEventForm && (
+            <NewEventModal
+              onCreate={handleCreateEvent}
+              onClose={() => setShowNewEventForm(false)}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 };

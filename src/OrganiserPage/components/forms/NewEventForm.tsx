@@ -1,14 +1,14 @@
 // components/forms/NewEventForm.tsx
 import React, { useState } from 'react';
-import { Event } from '../shared/interfaces';
+import { EventForOrganiser } from '../shared/interfaces';
 
 interface Props {
-  onCreate: (newEvent: Omit<Event, 'id' | 'participants' | 'applications'>) => void;
+  onCreate: (newEvent: Omit<EventForOrganiser, 'id' | 'participants' | 'applications'>) => void;
   onCancel: () => void;
 }
 
 const NewEventForm: React.FC<{ 
-  onCreate: (newEvent: Omit<Event, 'id' | 'participants' | 'applications'>) => void;
+  onCreate: (newEvent: Omit<EventForOrganiser, 'id' | 'participants' | 'applications'>) => void;
   onCancel: () => void;
 }> = ({ onCreate, onCancel }) => {
   const [title, setTitle] = useState('');

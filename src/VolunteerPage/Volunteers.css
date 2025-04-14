@@ -9,49 +9,6 @@
   align-items: center;
 }
 
-/* Стили для модального окна */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Прозрачный черный фон */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Модальное окно должно быть поверх остальных элементов */
-  opacity: 0; /* Начальная прозрачность */
-  pointer-events: none; /* Пока окно не открыто, оно не будет взаимодействовать с другими элементами */
-  transition: opacity 0.3s ease; /* Плавное изменение прозрачности */
-}
-
-.modal-overlay.open {
-  opacity: 1; /* Когда окно открыто, оно становится видимым */
-  pointer-events: all; /* Включаем взаимодействие с элементами */
-}
-
-.modal-overlay.closing {
-  opacity: 0; /* Когда окно закрывается, оно становится невидимым */
-  pointer-events: none; /* Отключаем взаимодействие, когда окно закрывается */
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transform: translateY(-50px); /* Начальная позиция сверху */
-  opacity: 0; /* Начальная прозрачность */
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Плавное изменение позиции и прозрачности */
-}
-
-.modal-overlay.open .modal-content {
-  transform: translateY(0); /* Когда окно открыто, оно появляется */
-  opacity: 1; /* Окно становится полностью видимым */
-}
 
 .event-content {
   display: flex;
@@ -68,6 +25,7 @@
   line-height: 2rem;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .button-container {
@@ -85,6 +43,10 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.modal-content.volunteers-modal {
+  max-width: 600px;
 }
 
 .modal-content button:hover {
@@ -114,4 +76,5 @@
   justify-content: center;
   padding: 1px 6px;
   font-size: 13.333px;
+  cursor: default;
 }

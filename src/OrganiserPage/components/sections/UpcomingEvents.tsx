@@ -1,42 +1,49 @@
 import React, { useState } from 'react';
 import EventDetailsModal from '../modals/EventDetailsModal';
-import { Event } from '../shared/interfaces';
-import {formatDate, formatTimeRange, TimeRange} from '../../../global_functions/Datetime_redact';
+import { EventForOrganiser } from '../shared/interfaces';
+import { formatDate, formatTimeRange, TimeRange } from '../../../global_functions/Datetime_redact';
+import { useModal } from '../../../global_functions/Modal_window'; // Импортируем useModal
 
 const UpcomingEvents: React.FC<{ 
-  events: Event[];
+  events: EventForOrganiser[];
   onAcceptApplication: (eventId: number, appId: number) => void;
   onRejectApplication: (eventId: number, appId: number) => void;
 }> = ({ events, onAcceptApplication, onRejectApplication }) => {
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-    const [showNewEventForm, setShowNewEventForm] = useState(false);
+  const { isModalOpen, isClosing, selectedEvent, openModal, closeModal } = useModal();
+  const OrganiserEvent = selectedEvent?.event as EventForOrganiser | null;
 
+  // console.log(events)
   return (
     <div>
-      <ul className = "events-list">
+      <ul className="events-list">
         {events.map((event, index) => (
-          <li key={index} onClick={() => setSelectedEvent(event)}>
+          <li key={index} onClick={() => openModal(event, index)}>
             <div key={event.id} className="event-item">
-              <div className="volunteer__my-events_el_title-box">
-                <p className="volunteer__my-events_el_title-box_name">{event.title}</p>
-                <p className="volunteer__my-events_el_title-box_time">{formatDate(event.eventDate[0])},  {formatTimeRange(event.eventDate)}</p>
+              <div className="events_el_title-box">
+                <p className="events_el_title-box_name">{event.title}</p>
+                <p className="events_el_title-box_time">
+                  {formatDate(event.eventDate[0])}, {formatTimeRange(event.eventDate)}
+                </p>
               </div>
               <p className='event-description'>{event.description}</p>
             </div>
           </li>
-          ))}
-      </ul>     
-      {selectedEvent && (
-        <EventDetailsModal
-          event={selectedEvent}
-          onClose={() => setSelectedEvent(null)}
-          onAccept={(appId) => onAcceptApplication(selectedEvent.id, appId)}
-          onReject={(appId) => onRejectApplication(selectedEvent.id, appId)}
-        />
+        ))}
+      </ul>
+
+      {isModalOpen && OrganiserEvent !== null && (
+          <div className={`modal-overlay ${isModalOpen ? 'open' : ''} ${isClosing ? 'closing' : ''}`}
+          onClick={closeModal}>
+          <EventDetailsModal
+            event={OrganiserEvent}
+            onClose={closeModal} // Используем closeModal из useModal
+            onAccept={(appId) => onAcceptApplication(OrganiserEvent.id, appId)}
+            onReject={(appId) => onRejectApplication(OrganiserEvent.id, appId)}
+          />
+        </div>
       )}
+
     </div>
-
-
   );
 };
 

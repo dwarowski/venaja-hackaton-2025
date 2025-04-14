@@ -149,22 +149,25 @@ background-color: rgb(180, 183, 185);
   box-sizing: border-box;
 }
 
-.volunteer__my-events_el_title-box {
+.events_el_title-box {
   width: 100%;
   display: grid;
   grid-template-columns: 60% 1fr;
 }
 
-.volunteer__my-events_el_title-box_name {
+.events_el_title-box_name {
+  text-wrap: nowrap;
   font-weight: bold;
   font-size: large;
+  cursor: default;
 }
 
-.volunteer__my-events_el_title-box_time {
+.events_el_title-box_time {
   text-align: end;
+  cursor: default;
 }
 
-.volunteer__future-events_button-container {
+.events_button-container {
   margin: auto;
 
 }
@@ -183,13 +186,13 @@ background-color: rgb(180, 183, 185);
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-  /* Стили для описания события (ограничение текста с троеточием) */
 .event-description {
   white-space: nowrap; /* Запрещаем перенос строки */
   overflow: hidden; /* Скрываем переполнение */
   text-overflow: ellipsis; /* Добавляем троеточие в конце */
   color: rgba(61, 49, 49, .9);
   margin: 0;
+  cursor: default;
 }
 
   /* Стили для списка событий */
@@ -201,4 +204,47 @@ background-color: rgb(180, 183, 185);
 
 .event-item:hover {
   background-color: rgb(204, 210, 214);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Прозрачный черный фон */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; /* Модальное окно должно быть поверх остальных элементов */
+  opacity: 0; /* Начальная прозрачность */
+  pointer-events: none; /* Пока окно не открыто, оно не будет взаимодействовать с другими элементами */
+  transition: opacity 0.3s ease; /* Плавное изменение прозрачности */
+}
+
+/* Когда окно открыто */
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto; /* Разрешаем взаимодействие с окном */
+}
+
+.modal-overlay.closing {
+  opacity: 0; /* Когда окно закрывается, оно становится невидимым */
+  pointer-events: none; /* Отключаем взаимодействие, когда окно закрывается */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-50px); /* Начальная позиция сверху */
+  opacity: 0; /* Начальная прозрачность */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Плавное изменение позиции и прозрачности */
+}
+
+.modal-overlay.open .modal-content {
+  transform: translateY(0); /* Когда окно открыто, оно появляется */
+  opacity: 1; /* Окно становится полностью видимым */
 }

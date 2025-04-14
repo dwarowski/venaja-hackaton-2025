@@ -1,9 +1,9 @@
 // Обновленный компонент NewEventForm в виде модального окна
 import React, { useState } from 'react'; // Добавить импорт React и useState
-import { Event } from '../shared/interfaces'; // Убедитесь в правильности пути
+import { EventForOrganiser } from '../shared/interfaces'; // Убедитесь в правильности пути
 import {formatDate, formatTimeRange, TimeRange} from '../../../global_functions/Datetime_redact';
 const NewEventModal: React.FC<{ 
-  onCreate: (newEvent: Omit<Event, 'id' | 'participants' | 'applications'>) => void;
+  onCreate: (newEvent: Omit<EventForOrganiser, 'id' | 'participants' | 'applications'>) => void;
   onClose: () => void;
 }> = ({ onCreate, onClose }) => {
   const [title, setTitle] = useState('');

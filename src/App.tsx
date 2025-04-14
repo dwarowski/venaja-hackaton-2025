@@ -2,7 +2,7 @@ import './App.css';
 import './Scroll.css'
 import Volunteer from './VolunteerPage/Volunteer';
 import OrganiserPage from './OrganiserPage/Organiser';
-
+import { ModalProvider } from './global_functions/Modal_window';
 //Мне нужно в эту штуку передавать объект содержащий сущность пользователя(роль и имя)
 
 function App() {
@@ -15,12 +15,15 @@ function App() {
           <a href="http://www.sberbank.ru"><img src="/logo.svg" className = "header-logo"/></a>
         </div>
       </header>
+      <ModalProvider>
       {/* <Volunteer></Volunteer> */}
        <OrganiserPage></OrganiserPage>
+       </ModalProvider>
       <footer>
         <p>Powered by Venaja</p>
       </footer>
     </div>
+
   );
 }
 
