@@ -1,11 +1,12 @@
-// Обновленный компонент NewEventForm в виде модального окна
-import React, { useState } from 'react'; // Добавить импорт React и useState
-import { EventForOrganiser } from '../shared/interfaces'; // Убедитесь в правильности пути
-import {formatDate, formatTimeRange, TimeRange} from '../../../global_functions/Datetime_redact';
+import React, { useState, useEffect } from 'react';
+import { EventForOrganiser } from '../shared/interfaces';
+
 const NewEventModal: React.FC<{ 
   onCreate: (newEvent: Omit<EventForOrganiser, 'id' | 'participants' | 'applications'>) => void;
   onClose: () => void;
 }> = ({ onCreate, onClose }) => {
+  const [isClosing, setIsClosing] = useState(false);
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -19,66 +20,88 @@ const NewEventModal: React.FC<{
       eventDate: [new Date(startDate), new Date(endDate)],
     });
   };
-  
 
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      setIsClosing(true);
+    }
+  };
 
+  useEffect(() => {
+    if (isClosing) {
+      const timeout = setTimeout(() => {
+        onClose();
+      }, 300); // дождаться завершения анимации
+      return () => clearTimeout(timeout);
+    }
+  }, [isClosing, onClose]);
 
   return (
-    <div className="modal-overlay">
-      <div className="event-modal" style={{ maxWidth: '800px' }}>
+    <div 
+      className={`modal-overlay ${isClosing ? 'closed' : 'open'}`} 
+      onClick={handleOverlayClick}
+    >
+
+      <div className="modal-content newevent-modal">
         <div className="modal-header">
-          <button className="close-button" onClick={onClose}>×</button>
+          <h2>Новое мероприятие</h2>
         </div>
-        
         <form onSubmit={handleSubmit} className="event-form-container">
-          {/* Левая колонка */}
-          <div className="form-left-column">
-            <h3>Новое мероприятие</h3>
-            <div className="form-section">
-              <label>Описание</label>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Введите описание мероприятия"
-                required
-                className="description-textarea"
-              />
+          <div className='event-columns'>
+            <div className="form-left-column">
+              <div className="form-section">
+                <label>Название</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Введите название мероприятия"
+                  required
+                  className="input-textarea"
+                />
+              </div>
+              <div className="form-section">
+                <label>Описание</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Введите описание мероприятия"
+                  required
+                  className="input-textarea"
+                />
+              </div>
+            </div>
+
+            <div className="form-right-column">
+              <div className="time-section">
+                <div className="form-section">
+                  <label>Дата и время начала</label>
+                  <input
+                    type="datetime-local"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="form-section">
+                  <label>Дата и время окончания</label>
+                  <input
+                    type="datetime-local"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* Правая колонка */}
-          <div className="form-right-column">
-            <div className="time-section">
-              <div className="form-section">
-                <label>Дата и время начала</label>
-                <input
-                  type="datetime-local"
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="form-section">
-                <label>Дата и время окончания</label>
-                <input
-                  type="datetime-local"
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="modal-actions">
-              <button type="submit" className="submit-btn">
+          <div className="actions">
+              <button type="submit" className="button-active">
                 Отправить заявку
               </button>
-              <button type="button" className="cancel-btn" onClick={onClose}>
+              <button type="button" className="button-active" onClick={() => setIsClosing(true)}>
                 Отменить заявку
               </button>
             </div>
-          </div>
         </form>
       </div>
     </div>

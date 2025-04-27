@@ -27,7 +27,6 @@ const OrganiserPage: React.FC = () => {
       tabsRef.current.scrollBy({ left: 150, behavior: 'smooth' });
     }
   };
-
   const [activeTab, setActiveTab] = useState<'upcoming' | 'pending' | 'completion'>('upcoming');
   const [events, setEvents] = useState<EventForOrganiser[]>([
     {
