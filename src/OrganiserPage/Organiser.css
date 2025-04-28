@@ -135,12 +135,6 @@
   padding: 10px;
 }
 
-.event-description {
-  height: 50px;
-  text-decoration: double;
-}
-
-
 .application-item {
   display: flex;
   justify-content: space-between;
@@ -603,4 +597,9 @@ margin: 20px 0;
 h3 {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.request-data {
+  font-style: oblique;
+  color: rgba(90, 79, 79, 0.9);
 }

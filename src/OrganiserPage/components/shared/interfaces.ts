@@ -21,10 +21,7 @@ export interface Participant {
     applications: Application[];
   }
   
-  export interface EventRequest {
-    id: number;
-    eventTime: TimeRange;
-    description: string;
+  export interface EventRequest extends Event{
     status: 'pending' | 'rejected';
     creationDate: Date;
   }
@@ -34,9 +31,6 @@ export interface Participant {
     isPresent: boolean;
   }
   
-  export interface CompletionEvent {
-    id: number;
-    eventTime: TimeRange;
-    description: string;
+  export interface CompletionEvent extends Event {
     participants: Participant[];
   }

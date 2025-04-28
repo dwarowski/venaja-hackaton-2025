@@ -21,9 +21,7 @@ const UpcomingEvents: React.FC<{
             <div key={event.id} className="event-item">
               <div className="events_el_title-box">
                 <p className="events_el_title-box_name">{event.title}</p>
-                <p className="events_el_title-box_time">
-                  {formatDate(event.eventDate[0])}, {formatTimeRange(event.eventDate)}
-                </p>
+                <p className="events_el_title-box_time"> {formatDate(event.eventDate[0])}, {formatTimeRange(event.eventDate)}</p>
               </div>
               <p className='event-description'>{event.description}</p>
             </div>

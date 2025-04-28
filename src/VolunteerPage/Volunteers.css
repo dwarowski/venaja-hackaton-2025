@@ -1,38 +1,9 @@
-.event-box {
-  width: 80%;
-}
 
 /* Стили для блока с основной информацией */
 .main-info {
   display: flex;
   gap: 1rem;
   align-items: center;
-}
-
-
-.event-content {
-  display: flex;
-  align-items: center;
-}
-
-
-.button-container button {
-  white-space: nowrap;
-  background-color: rgb(37, 210, 69); /* bg-blue-600 */
-  color: white;
-  width: 100%;
-  border-radius: 0.5rem;
-  line-height: 2rem;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.button-container {
-  flex-grow: 1; /* Занимает всё оставшееся пространство */
-  display: flex;
-  justify-content:center;
-  padding: 5px; /* Кнопка прилипает к правому краю */
 }
 
 .modal-content button {

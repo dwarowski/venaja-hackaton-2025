@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import UpcomingEvents from './components/sections/UpcomingEvents';
+import PendingApplications from './components/sections/PendingApplications';
 import NewEventModal from './components/modals/NewEventModal';
 import CompletionEvents from './components/sections/CompletionEvents';
 import { 
@@ -160,8 +161,9 @@ const OrganiserPage: React.FC = () => {
   const [completionEvents, setCompletionEvents] = useState<CompletionEvent[]>([
     {
       id: 1,
-      eventTime: [new Date('2023-12-01T10:00:00'), new Date('2023-12-01T12:00:00')] as TimeRange,
-      description: 'IT-волонтерство для начинающих',
+      eventDate: [new Date('2023-12-01T10:00:00'), new Date('2023-12-01T12:00:00')] as TimeRange,
+      title: 'IT-волонтерство для начинающих',
+      description: 'IT-волонтерство для начинающихописание',
       participants: [
         { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date("1990-05-15") },
         { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date("1985-08-22") }
@@ -169,7 +171,8 @@ const OrganiserPage: React.FC = () => {
     },
     {
       id: 2,
-      eventTime: [new Date('2023-12-01T14:00:00'), new Date('2023-12-01T14:00:00')] as TimeRange,
+      eventDate: [new Date('2023-12-01T14:00:00'), new Date('2023-12-01T14:00:00')] as TimeRange,
+      title: 'IT-ХИ-ХИ для ха-ха',
       description: 'IT-ХИ-ХИ для ха-ха',
       participants: [
         { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
@@ -224,50 +227,21 @@ const OrganiserPage: React.FC = () => {
     }]);
   };
 
-  const PendingApplications: React.FC<{ 
-  requests: EventRequest[];
-  onDelete: (id: number) => void;
-}> = ({ requests, onDelete }) => (
-  <div className="applications-container">
-    {requests.map((request) => (
-      <div key={request.id} className="application-card">
-        <div className="event-time">{formatTimeRange(request.eventTime)}</div>
-        <div className="event-description">{request.description}</div>
-        <div className="application-status-row">
-          <span className={`status-indicator ${request.status}`}>
-            Статус: {request.status === 'pending' 
-              ? 'На рассмотрении' 
-              : 'Отклонено'}
-          </span>
-          <div className="request-actions">
-            <span className="request-date">
-              {formatDate(request.creationDate)}
-            </span>
-            <button 
-              className="delete-button"
-              onClick={() => onDelete(request.id)}
-            >
-              Удалить
-            </button>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-);
 
 const [eventRequests, setEventRequests] = useState<EventRequest[]>([
   {
     id: 1,
-    eventTime: [new Date('2023-12-01T10:00'), new Date('2023-12-01T12:00')] as TimeRange,
-    description: 'IT-волонтерство для начинающих',
+    eventDate: [new Date('2023-12-01T10:00'), new Date('2023-12-01T12:00')] as TimeRange,
+    title: 'IT-волонтерство для начинающих',
+    description: 'IT-волонтерство для начинающихasasasasasas',
     status: 'pending',
     creationDate: new Date('01.12.2023')
   },
   {
     id: 2,
-    eventTime: [new Date('2023-12-01T14:00'), new Date('2023-12-01T16:00')] as TimeRange,
-    description: 'Обучение цифровой грамотности',
+    eventDate: [new Date('2023-12-01T14:00'), new Date('2023-12-01T16:00')] as TimeRange,
+    description: 'Обучение цифровой грамотностиasfsaaad',
+    title: 'Обучение цифровой грамотности',
     status: 'rejected',
     creationDate: new Date('02.12.2023')
   }

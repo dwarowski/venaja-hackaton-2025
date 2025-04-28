@@ -96,10 +96,10 @@ const NewEventModal: React.FC<{
           </div>
           <div className="actions">
               <button type="submit" className="button-active">
-                Отправить заявку
+                Создать мероприятие
               </button>
               <button type="button" className="button-active" onClick={() => setIsClosing(true)}>
-                Отменить заявку
+                Отмена
               </button>
             </div>
         </form>

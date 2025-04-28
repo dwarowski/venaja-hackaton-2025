@@ -16,7 +16,7 @@ const CompletionEvents: React.FC<{
     <div className="events-container">
       {events.map((event) => (
         <div key={event.id} className="event-card completion-card">
-          <div className="event-time">{formatTimeRange(event.eventTime)}</div>
+          <div className="event-time">{formatTimeRange(event.eventDate)}</div>
           <div className="event-description">{event.description}</div>
           <button 
             className="complete-button"

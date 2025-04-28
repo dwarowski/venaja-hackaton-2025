@@ -4,36 +4,50 @@ import React from 'react';
 import { EventRequest } from '../shared/interfaces'; // Правильный путь к интерфейсам
 import { TimeRange, formatTimeRange, formatDate } from '../../../global_functions/Datetime_redact';
 
-  const  PendingApplications: React.FC<{ 
+  const PendingApplications: React.FC<{ 
   requests: EventRequest[];
   onDelete: (id: number) => void;
-}> = ({ requests, onDelete }) => (
-  <div className="applications-container">
-    {requests.map((request) => (
-      <div key={request.id} className="application-card">
-        <div className="event-time">{formatTimeRange(request.eventTime)}</div>
-        <div className="event-description">{request.description}</div>
-        <div className="application-status-row">
-          <span className={`status-indicator ${request.status}`}>
-            Статус: {request.status === 'pending' 
-              ? 'На рассмотрении' 
-              : 'Отклонено'}
-          </span>
-          <div className="request-actions">
-            <span className="request-date">
-              {formatDate(request.creationDate)}
-            </span>
-            <button 
-              className="delete-button"
-              onClick={() => onDelete(request.id)}
-            >
-              Удалить
-            </button>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
-);
+}> = ({ requests, onDelete }) => {
+  return (
+    <div>
+      <ul className='events-list'>
+        {requests.map((request) => {
+          return (
+            <li key={request.id}>
+              <div className='event-item'>
+                <div className='event-content'>
+                  <div className='event-box'>
+                    <div className='events_el_title-box'>
+                        <p className='events_el_title-box_name'>{request.title}</p>
+                        <p className='events_el_title-box_time'>{formatDate(request.eventDate[0])}, {formatTimeRange(request.eventDate)}</p>
+                    </div>
+                    <p className='event-description'>{request.description}</p>
+                    <p className='request-data'>
+                      <span>
+                        Статус: {request.status === 'pending' ? 'На рассмотрении' : 'Отклонено'}
+                      </span>
+                      ⠀
+                      <span>
+                         Дата создания: {formatDate(request.creationDate)}
+                      </span>
+                    </p>
+                  </div>
+                  <div className="button-container">
+                    <button
+                        className="request-paticipance volunteer__future-events_button"
+                        onClick={() => onDelete(request.id)}
+                    >
+                        Удалить
+                    </button>
+                    </div>
+                </div>
+              </div>
+            </li>
+          )
+})}
+      </ul>
+    </div>
+  );
+}
 
 export default PendingApplications;

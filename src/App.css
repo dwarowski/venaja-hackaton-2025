@@ -149,6 +149,16 @@ background-color: rgb(180, 183, 185);
   box-sizing: border-box;
 }
 
+.event-box {
+  width: 80%;
+}
+
+.event-content {
+  display: flex;
+  align-items: center;
+}
+
+
 .events_el_title-box {
   width: 100%;
   display: grid;
@@ -247,4 +257,23 @@ background-color: rgb(180, 183, 185);
 .modal-overlay.open .modal-content {
   transform: translateY(0); /* Когда окно открыто, оно появляется */
   opacity: 1; /* Окно становится полностью видимым */
+}
+
+.button-container button {
+  white-space: nowrap;
+  background-color: rgb(37, 210, 69); /* bg-blue-600 */
+  color: white;
+  width: 100%;
+  border-radius: 0.5rem;
+  line-height: 2rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.button-container {
+  flex-grow: 1; /* Занимает всё оставшееся пространство */
+  display: flex;
+  justify-content:center;
+  padding: 5px; /* Кнопка прилипает к правому краю */
 }
