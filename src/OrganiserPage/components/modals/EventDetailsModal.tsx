@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Application, Participant, EventForOrganiser } from '../shared/interfaces';
 import '../../Organiser.css';
-import { formatDate } from '../../../global_functions/Datetime_redact';
+import { formatDate, formatDateTime } from '../../../global_functions/Datetime_redact';
 
 const EventDetailsModal: React.FC<{
   event: EventForOrganiser;
@@ -37,7 +37,7 @@ const EventDetailsModal: React.FC<{
   return (
     <div
       className="modal-content futureevent-modal"
-      onClick={(e) => e.stopPropagation()}  // <-- добавил сюда
+      onClick={(e) => e.stopPropagation()}
     >
       <div className="modal-header">
         <h2>{event.title}</h2>
@@ -49,8 +49,8 @@ const EventDetailsModal: React.FC<{
       </div>
       <h3>Дата и время события</h3>
       <div className='container event-date'>
-        {formatDate(event.eventDate[0])} - {formatDate(event.eventDate[1])}
-        </div>
+        {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}
+      </div>
 
       {/* Таблица участников */}
       <div className="section">

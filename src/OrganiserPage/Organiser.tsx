@@ -9,10 +9,7 @@ import {
   CompletionEvent,
   EventRequest 
 } from './components/shared/interfaces';
-import { TimeRange, formatDate, formatTimeRange } from '../global_functions/Datetime_redact';
-import { useModal } from '../global_functions/Modal_window';
-
-
+import { TimeRange} from '../global_functions/Datetime_redact';
 
 const OrganiserPage: React.FC = () => {
   const tabsRef = useRef<HTMLDivElement>(null);

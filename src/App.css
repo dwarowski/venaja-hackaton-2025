@@ -161,11 +161,12 @@ background-color: rgb(180, 183, 185);
 
 .events_el_title-box {
   width: 100%;
-  display: grid;
-  grid-template-columns: 60% 1fr;
+  display: flex;
+  flex-direction: row;
 }
 
 .events_el_title-box_name {
+  width: 70%;
   text-wrap: nowrap;
   font-weight: bold;
   font-size: large;
@@ -173,8 +174,24 @@ background-color: rgb(180, 183, 185);
 }
 
 .events_el_title-box_time {
+  display: block;
+  flex-grow: 1;
   text-align: end;
   cursor: default;
+  position: relative;
+}
+
+.events_el_title-box_time-block p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.events_el_title-box_time-block {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 .events_button-container {

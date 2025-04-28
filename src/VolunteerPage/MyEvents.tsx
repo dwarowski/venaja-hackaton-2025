@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TimeRange, formatDate, formatTimeRange } from '../global_functions/Datetime_redact';
+import { TimeRange, formatDate, formatDateTime } from '../global_functions/Datetime_redact';
 import { useModal } from '../global_functions/Modal_window';
 import { EventForVolunteer } from './Volunteer';
 
@@ -19,8 +19,13 @@ const MyEvents: React.FC<EventsProps> = ({ events }) => {
           <li key={index} onClick={() => openModal(event, index)}>
             <div className="event-item">
               <div className='events_el_title-box'>
-                <p className='events_el_title-box_name'>{event.title}</p>
-                <p className='events_el_title-box_time'>{formatDate(event.eventDate[0])},  {formatTimeRange(event.eventDate)} </p>
+                  <p className='events_el_title-box_name'>{event.title}</p>
+                  <div className='events_el_title-box_time'>
+                      <div className='events_el_title-box_time-block'>
+                          <p className=''>{formatDateTime(event.eventDate[0])}</p>
+                          <p className=''>{formatDateTime(event.eventDate[1])}</p>
+                      </div>
+                  </div>
               </div>
               <p className='event-description'>{event.description}</p>
             </div>
@@ -36,8 +41,7 @@ const MyEvents: React.FC<EventsProps> = ({ events }) => {
         >
           <div className="modal-content volunteers-modal" onClick={(e) => e.stopPropagation()}>
             <h1><strong>Название:</strong> {selectedEvent.event.title}</h1>
-            <p><strong>Дата:</strong> {formatDate(selectedEvent.event.eventDate[0])}</p>
-            <p><strong>Время:</strong> {formatTimeRange(selectedEvent.event.eventDate)}</p>
+            <p><strong>Дата:</strong> {formatDateTime(selectedEvent.event.eventDate[0])} - {formatDateTime(selectedEvent.event.eventDate[1])}</p>
             <p><strong>Описание:</strong> {selectedEvent.event.description}</p>
             <button onClick={closeModal}>Понял</button>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TimeRange, formatDate, formatTimeRange } from '../global_functions/Datetime_redact';
+import { TimeRange, formatDate, formatDateTime } from '../global_functions/Datetime_redact';
 import { EventForVolunteer } from './Volunteer';
 import { useModal } from '../global_functions/Modal_window';
 
@@ -55,8 +55,13 @@ const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
                 <div className="event-content">
                   <div className="event-box">
                     <div className='events_el_title-box'>
-                      <p className='events_el_title-box_name'>{event.title}</p>
-                      <p className='events_el_title-box_time'>{formatDate(event.eventDate[0])}, {formatTimeRange(event.eventDate)} </p>
+                        <p className='events_el_title-box_name'>{event.title}</p>
+                        <div className='events_el_title-box_time'>
+                            <div className='events_el_title-box_time-block'>
+                                <p className=''>{formatDateTime(event.eventDate[0])}</p>
+                                <p className=''>{formatDateTime(event.eventDate[1])}</p>
+                            </div>
+                        </div>
                     </div>
                     <p className='event-description'>{event.description}</p>
                   </div>
@@ -82,8 +87,7 @@ const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
         >
           <div className="modal-content volunteers-modal" onClick={(e) => e.stopPropagation()}>
             <h1><strong>Название:</strong> {volunteerEvent.title}</h1>
-            <p><strong>Дата:</strong> {formatDate(volunteerEvent.eventDate?.[0])}</p>
-            <p><strong>Время:</strong> {formatTimeRange(volunteerEvent.eventDate)}</p>
+            <p><strong>Дата:</strong> {formatDateTime(volunteerEvent.eventDate[0])} - {formatDateTime(volunteerEvent.eventDate[1])}</p>
             <p><strong>Описание:</strong> {volunteerEvent.description}</p>
 
             {volunteerEvent.accepted ? (

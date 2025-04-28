@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import EventDetailsModal from '../modals/EventDetailsModal';
 import { EventForOrganiser } from '../shared/interfaces';
-import { formatDate, formatTimeRange, TimeRange } from '../../../global_functions/Datetime_redact';
+import { formatDate, formatDateTime, TimeRange } from '../../../global_functions/Datetime_redact';
 import { useModal } from '../../../global_functions/Modal_window'; // Импортируем useModal
 
 const UpcomingEvents: React.FC<{ 
@@ -19,9 +19,14 @@ const UpcomingEvents: React.FC<{
         {events.map((event, index) => (
           <li key={index} onClick={() => openModal(event, index)}>
             <div key={event.id} className="event-item">
-              <div className="events_el_title-box">
-                <p className="events_el_title-box_name">{event.title}</p>
-                <p className="events_el_title-box_time"> {formatDate(event.eventDate[0])}, {formatTimeRange(event.eventDate)}</p>
+              <div className='events_el_title-box'>
+                  <p className='events_el_title-box_name'>{event.title}</p>
+                  <div className='events_el_title-box_time'>
+                      <div className='events_el_title-box_time-block'>
+                          <p className=''>{formatDateTime(event.eventDate[0])}</p>
+                          <p className=''>{formatDateTime(event.eventDate[1])}</p>
+                      </div>
+                  </div>
               </div>
               <p className='event-description'>{event.description}</p>
             </div>

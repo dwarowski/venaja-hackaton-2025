@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { formatDate, formatTimeRange } from '../../../global_functions/Datetime_redact';
+import { formatDate, formatDateTime } from '../../../global_functions/Datetime_redact';
 // Импортируем необходимые интерфейсы
 import { CompletionEvent, Attendance, Participant } from '../shared/interfaces';
 
-interface CompletionModalProps {
+// interface CompletionModalProps {
+//   event: CompletionEvent;
+//   onClose: () => void;
+//   onConfirm: (attendances: Attendance[]) => void;
+// }
+
+const CompletionModal: React.FC<{
   event: CompletionEvent;
   onClose: () => void;
   onConfirm: (attendances: Attendance[]) => void;
-}
-
-const CompletionModal: React.FC<CompletionModalProps> = ({ 
-  event, 
-  onClose, 
-  onConfirm 
-}) => {
+}> = ({ event, onClose, onConfirm}) => {
   // Явно указываем тип для состояния
   const [attendances, setAttendances] = useState<Attendance[]>(
     event.participants.map((p: Participant) => ({
@@ -34,10 +34,16 @@ const CompletionModal: React.FC<CompletionModalProps> = ({
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-content complitionevent-modal"
+    onClick={(e) => e.stopPropagation()}>
+      <div className='modal-header'>
+        <h2>{event.title}</h2>
+      </div>
+      <h3>Дата и время события</h3>
+      <div className='container event-date'>
+        {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}
+      </div>
       <div className="completion-modal">
-        <h2>Завершение мероприятия</h2>
-        
         <div className="participants-list">
           <div className="table-header">
             <span>Участник</span>
@@ -60,15 +66,15 @@ const CompletionModal: React.FC<CompletionModalProps> = ({
           ))}
         </div>
 
-        <div className="modal-actions">
-          <button className="cancel-button" onClick={onClose}>
-            Отмена
-          </button>
+        <div className="actions">
           <button 
             className="confirm-button" 
             onClick={() => onConfirm(attendances)}
           >
-            Подтвердить завершение
+            Завершить
+          </button>
+          <button className="cancel-button" onClick={onClose}>
+            Отмена
           </button>
         </div>
       </div>

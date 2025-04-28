@@ -5,14 +5,14 @@ export function formatDate(date: Date): string {
   return `${day}.${month}.${year}`;
 };
 
-export function formatTimeRange([start, end]: TimeRange): string {
+export function formatDateTime(date: Date): string {
   const formatTime = (date: Date): string => {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${hours}:${minutes}`;
   };
 
-  return `${formatTime(start)} - ${formatTime(end)}`;
-};
+  return `${formatDate(date)}, ${formatTime(date)}`;
+}
 
 export type TimeRange = [start: Date, end: Date];

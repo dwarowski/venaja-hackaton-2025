@@ -2,7 +2,7 @@
   // PendingApplications.tsx
 import React from 'react';
 import { EventRequest } from '../shared/interfaces'; // Правильный путь к интерфейсам
-import { TimeRange, formatTimeRange, formatDate } from '../../../global_functions/Datetime_redact';
+import { TimeRange, formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
 
   const PendingApplications: React.FC<{ 
   requests: EventRequest[];
@@ -19,7 +19,12 @@ import { TimeRange, formatTimeRange, formatDate } from '../../../global_function
                   <div className='event-box'>
                     <div className='events_el_title-box'>
                         <p className='events_el_title-box_name'>{request.title}</p>
-                        <p className='events_el_title-box_time'>{formatDate(request.eventDate[0])}, {formatTimeRange(request.eventDate)}</p>
+                        <div className='events_el_title-box_time'>
+                            <div className='events_el_title-box_time-block'>
+                                <p className=''>{formatDateTime(request.eventDate[0])}</p>
+                                <p className=''>{formatDateTime(request.eventDate[1])}</p>
+                            </div>
+                        </div>
                     </div>
                     <p className='event-description'>{request.description}</p>
                     <p className='request-data'>
