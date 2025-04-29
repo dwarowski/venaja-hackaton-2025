@@ -6,16 +6,6 @@
   align-items: center;
 }
 
-.modal-content button {
-  padding: 10px 20px;
-  margin-top: 20px;
-  background-color: #36b85f;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 .modal-content.volunteers-modal {
   max-width: 600px;
 }

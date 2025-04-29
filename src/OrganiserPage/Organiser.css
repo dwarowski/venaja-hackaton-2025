@@ -172,10 +172,8 @@
   border-radius: 4px;
 }
 
-.form-actions {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
+.form-actions button {
+  margin-top: 0;
 }
 
 .toggle-button {
@@ -253,45 +251,6 @@ gap: 12px;
 margin-top: 24px;
 }
 
-.cancel-button {
-padding: 0.5rem 1rem;
-background: #f44336;
-color: white;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-}
-
-.confirm-button {
-padding: 0.5rem 1rem;
-background: #4CAF50;
-color: white;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-}
-
-
-.modal-header {
-  display: flex;
-  justify-content: center; /* центрируем по горизонтали */
-  align-items: center;      /* центрируем по вертикали */
-  margin-bottom: 24px;
-}
-
-
-.modal-header h2 {
-  text-align: center;
-}
-
-.close-button {
-font-size: 24px;
-background: none;
-color: #666;
-border: none;
-cursor: pointer;
-}
-
 .applications-section {
 margin-bottom: 25px;
 }
@@ -303,17 +262,6 @@ display: contents;
 .application-row > div {
 padding: 10px;
 border-bottom: 1px solid #eee;
-}
-
-.actions {
-  display: flex;
-  gap: 16px; /* можно использовать фиксированное расстояние между кнопками */
-  justify-content: center;
-  align-items: center;/* корректируем сдвиг, чтобы центр был в середине */
-}
-
-.actions button {
-  transition: background-color 0.3s ease;
 }
 
 .birth-date {
@@ -554,16 +502,6 @@ margin: 20px 0;
   right: -15px; /* Немного отступаем от правого края */
 }
 
-.modal-overlay button {
-  padding: 10px 20px;
-  margin-top: 20px;
-  background-color: #36b85f;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 .modal-content.futureevent-modal {
   width: 60%;
 }
@@ -584,4 +522,5 @@ h3 {
 .request-data {
   font-style: oblique;
   color: rgba(90, 79, 79, 0.9);
+  margin: 5px 0 0 0; 
 }

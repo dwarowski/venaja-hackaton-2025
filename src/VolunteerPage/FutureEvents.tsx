@@ -79,14 +79,17 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
                 onClick={closeModal}
             >
                 <div className="modal-content volunteers-modal" onClick={(e) => e.stopPropagation()}>
-                    <h1><strong>Название:</strong> {selectedEvent.event.title}</h1>
+                    <div className='modal-header'>
+                        <h2>{selectedEvent.event.title}</h2>
+                    </div>
                     <p><strong>Дата:</strong> {selectedEvent.event.eventDate ? `${formatDateTime(selectedEvent.event.eventDate[0])} - ${formatDateTime(selectedEvent.event.eventDate[1])}` : 'Время не указано'}</p>
                     <p><strong>Описание:</strong> {selectedEvent.event.description}</p>
-
+                    <div className='actions'>
                     {/* Кнопка заявки в модалке */}
                     {(() => {
                         const selectedEventIndex = events.findIndex(event => event.id === selectedEvent.event.id);
                         const { text, disabled } = getButtonState(selectedEventIndex);
+
                         return (
                             <button
                                 className="request-paticipance"
@@ -98,7 +101,8 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
                         );
                     })()}
 
-                    <button onClick={closeModal} style={{ marginLeft: '10px' }}>Понял</button>
+                    <button onClick={closeModal}>Понял</button>
+                    </div>
                 </div>
             </div>
             )}   

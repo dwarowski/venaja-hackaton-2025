@@ -86,7 +86,9 @@ const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
           onClick={closeModal}
         >
           <div className="modal-content volunteers-modal" onClick={(e) => e.stopPropagation()}>
-            <h1><strong>Название:</strong> {volunteerEvent.title}</h1>
+            <div className='modal-header'>
+              <h2>{volunteerEvent.title}</h2>
+            </div>
             <p><strong>Дата:</strong> {formatDateTime(volunteerEvent.eventDate[0])} - {formatDateTime(volunteerEvent.eventDate[1])}</p>
             <p><strong>Описание:</strong> {volunteerEvent.description}</p>
 
@@ -96,7 +98,9 @@ const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
               <p><strong>Статус:</strong> Отсутствовал</p>
             )}
 
-            <button onClick={closeModal} style={{ marginLeft: '10px' }}>Понял</button>
+            <div className='actions'>
+              <button onClick={closeModal}>Понял</button>
+            </div>
           </div>
         </div>
       )}

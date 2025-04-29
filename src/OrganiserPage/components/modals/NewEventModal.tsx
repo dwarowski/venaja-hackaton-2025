@@ -96,7 +96,7 @@ const NewEventModal: React.FC<{
           </div>
           <div className="actions">
               <button type="submit" className="button-active">
-                Создать мероприятие
+                Создать
               </button>
               <button type="button" className="button-active" onClick={() => setIsClosing(true)}>
                 Отмена

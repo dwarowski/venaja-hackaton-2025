@@ -39,10 +39,7 @@ const CompletionModal: React.FC<{
       <div className='modal-header'>
         <h2>{event.title}</h2>
       </div>
-      <h3>Дата и время события</h3>
-      <div className='container event-date'>
-        {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}
-      </div>
+      <p><strong>Дата:</strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
       <div className="completion-modal">
         <div className="participants-list">
           <div className="table-header">

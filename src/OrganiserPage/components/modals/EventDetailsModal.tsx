@@ -42,19 +42,11 @@ const EventDetailsModal: React.FC<{
       <div className="modal-header">
         <h2>{event.title}</h2>
       </div>
-
-      <h3>Описание события</h3>
-      <div className='container event-description'>
-        {event.description}
-      </div>
-      <h3>Дата и время события</h3>
-      <div className='container event-date'>
-        {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}
-      </div>
-
+      <p><strong>Дата:</strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
+      <p><strong>Описание:</strong> {event.description}</p>
       {/* Таблица участников */}
       <div className="section">
-        <h3>Участники</h3>
+        <p><strong>Участники:</strong></p>
         <div className="scrollable-table-container members">
           <table className="participants-table">
             <thead>
@@ -77,7 +69,7 @@ const EventDetailsModal: React.FC<{
 
       {/* Таблица заявок */}
       <div className="section">
-        <h3>Заявки на участие</h3>
+      <p><strong>Заявки на участие:</strong></p>
         <div className="scrollable-table-container application">
           <table className="applications-table">
             <thead>
@@ -93,13 +85,13 @@ const EventDetailsModal: React.FC<{
                   <td>{app.name} {app.surname}</td>
                   <td>{formatDate(app.birthDate)}</td>
                   <td>
-                    <div className="actions">
-                      <button className='button-active' style={{margin: 0, width: '110px'}}
+                    <div className="actions form-actions">
+                      <button className='button-active'
                         onClick={() => handleAccept(app.id)}
                       >
                         Принять
                       </button>
-                      <button className='button-active' style={{margin: 0, width: '110px'}}
+                      <button className='button-active'
                         onClick={() => handleReject(app.id)}
                       >
                         Отклонить

@@ -40,10 +40,14 @@ const MyEvents: React.FC<EventsProps> = ({ events }) => {
           onClick={closeModal}
         >
           <div className="modal-content volunteers-modal" onClick={(e) => e.stopPropagation()}>
-            <h1><strong>Название:</strong> {selectedEvent.event.title}</h1>
+            <div className='modal-header'>
+              <h2>{selectedEvent.event.title}</h2>
+            </div>
             <p><strong>Дата:</strong> {formatDateTime(selectedEvent.event.eventDate[0])} - {formatDateTime(selectedEvent.event.eventDate[1])}</p>
             <p><strong>Описание:</strong> {selectedEvent.event.description}</p>
-            <button onClick={closeModal}>Понял</button>
+            <div className='actions'>
+              <button onClick={closeModal}>Понял</button>
+            </div>
           </div>
         </div>
       )}
