@@ -2,7 +2,7 @@
   // PendingApplications.tsx
 import React from 'react';
 import { EventRequest } from '../shared/interfaces'; // Правильный путь к интерфейсам
-import { TimeRange, formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
+import { formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
 
   const PendingApplications: React.FC<{ 
   requests: EventRequest[];
@@ -27,7 +27,7 @@ import { TimeRange, formatDateTime, formatDate } from '../../../global_functions
                         </div>
                     </div>
                     <p className='event-description'>{request.description}</p>
-                    <p className='request-data'>
+                    <p className='additional-data'>
                       <span>
                         Статус: {request.status === 'pending' ? 'На рассмотрении' : 'Отклонено'}
                       </span>

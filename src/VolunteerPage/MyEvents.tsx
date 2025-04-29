@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { TimeRange, formatDate, formatDateTime } from '../global_functions/Datetime_redact';
+import { formatDateTime } from '../global_functions/Datetime_redact';
 import { useModal } from '../global_functions/Modal_window';
 import { EventForVolunteer } from './Volunteer';
 

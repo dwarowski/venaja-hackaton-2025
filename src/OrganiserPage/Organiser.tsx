@@ -3,11 +3,7 @@ import UpcomingEvents from './components/sections/UpcomingEvents';
 import PendingApplications from './components/sections/PendingApplications';
 import NewEventModal from './components/modals/NewEventModal';
 import CompletionEvents from './components/sections/CompletionEvents';
-import { 
-  EventForOrganiser, 
-  Application, 
-  CompletionEvent,
-  EventRequest 
+import { EventForOrganiser, CompletionEvent, EventRequest 
 } from './components/shared/interfaces';
 import { TimeRange} from '../global_functions/Datetime_redact';
 
@@ -124,37 +120,7 @@ const OrganiserPage: React.FC = () => {
     }
   ]);
   
-  const [pendingApps, setPendingApps] = useState<Application[]>([
-    {
-      id: 1,
-      name: "Ольга",
-      surname: "Иванова",
-      birthDate: new Date("1998-12-05"),
-      status: "pending",
-    },
-    {
-      id: 2,
-      name: "Дмитрий",
-      surname: "Соколов",
-      birthDate: new Date("2001-07-22"),
-      status: "pending",
-    },
-    {
-      id: 3,
-      name: "Анна",
-      surname: "Кузнецова",
-      birthDate: new Date("1995-03-14"),
-      status: "pending",
-    },
-    {
-      id: 4,
-      name: "Иван",
-      surname: "Петров",
-      birthDate: new Date("1989-09-30"),
-      status: "pending",
-    },
-  ]);
-  
+
   const [completionEvents, setCompletionEvents] = useState<CompletionEvent[]>([
     {
       id: 1,

@@ -174,7 +174,9 @@ background-color: rgb(180, 183, 185);
 }
 
 .events_el_title-box_time {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: end;
   flex-grow: 1;
   text-align: end;
   cursor: default;
@@ -187,11 +189,8 @@ background-color: rgb(180, 183, 185);
 }
 
 .events_el_title-box_time-block {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  top: 50%;
-  transform: translate(0, -50%);
 }
 
 .events_button-container {
@@ -199,7 +198,7 @@ background-color: rgb(180, 183, 185);
 }
 
 .volunteer__future-events_button {
-  margin: 0px 0px 0px 20px; 
+  width: 95%;
 }
 
 .event-item {
@@ -279,7 +278,6 @@ background-color: rgb(180, 183, 185);
   white-space: nowrap;
   background-color: rgb(37, 210, 69); /* bg-blue-600 */
   color: white;
-  width: 100%;
   border-radius: 0.5rem;
   line-height: 2rem;
   border: none;
@@ -290,7 +288,7 @@ background-color: rgb(180, 183, 185);
 .button-container {
   flex-grow: 1; /* Занимает всё оставшееся пространство */
   display: flex;
-  justify-content:center;
+  justify-content: flex-end;
   padding: 5px; /* Кнопка прилипает к правому краю */
 }
 
@@ -325,4 +323,10 @@ background-color: rgb(180, 183, 185);
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.additional-data {
+  font-style: oblique;
+  color: rgba(90, 79, 79, 0.9);
+  margin: 5px 0 0 0; 
 }

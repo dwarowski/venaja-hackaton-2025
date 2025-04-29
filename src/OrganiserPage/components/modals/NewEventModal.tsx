@@ -7,7 +7,7 @@ const NewEventModal: React.FC<{
 }> = ({ onCreate, onClose }) => {
   const [isClosing, setIsClosing] = useState(false);
 
-  const [title, setTitle] = useState('');
+  const [title] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');

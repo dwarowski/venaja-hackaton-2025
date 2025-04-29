@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TimeRange, formatDate, formatDateTime } from '../global_functions/Datetime_redact';
+import { TimeRange, formatDateTime } from '../global_functions/Datetime_redact';
 import { EventForVolunteer } from './Volunteer';
 import { useModal } from '../global_functions/Modal_window';
 
@@ -52,8 +52,6 @@ const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
           return (
             <li key={index} onClick={() => openModal(event, index)}>
               <div className="event-item">
-                <div className="event-content">
-                  <div className="event-box">
                     <div className='events_el_title-box'>
                         <p className='events_el_title-box_name'>{event.title}</p>
                         <div className='events_el_title-box_time'>
@@ -64,16 +62,13 @@ const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
                         </div>
                     </div>
                     <p className='event-description'>{event.description}</p>
+                    <p className='additional-data'> {
+              event.accepted ? (
+                <span>Посещаемость: {calculateTimeDifference(event.eventDate)} часов</span>) :
+                (<span>Посещаемость: Отсутствовал</span>)
+              }
+            </p>
                   </div>
-                  <div className="button-container">
-                    {event.accepted ? (
-                      <p className="text-inactive volunteer__future-events_button">+ {calculateTimeDifference(event.eventDate)} часов</p>
-                    ) : (
-                      <p className="text-inactive volunteer__future-events_button">Отсутствовал</p>
-                    )}
-                  </div>
-                </div>
-              </div>
             </li>
           );
         })}
@@ -91,7 +86,6 @@ const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
             </div>
             <p><strong>Дата:</strong> {formatDateTime(volunteerEvent.eventDate[0])} - {formatDateTime(volunteerEvent.eventDate[1])}</p>
             <p><strong>Описание:</strong> {volunteerEvent.description}</p>
-
             {volunteerEvent.accepted ? (
               <p><strong>Статус:</strong> {calculateTimeDifference(volunteerEvent.eventDate)} часов</p>
             ) : (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TimeRange, formatDate, formatDateTime } from '../global_functions/Datetime_redact';
+import { formatDateTime } from '../global_functions/Datetime_redact';
 import { EventForVolunteer } from './Volunteer';
 import { useModal } from '../global_functions/Modal_window';
 
@@ -58,6 +58,7 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
                                     <div className="button-container">
                                         <button
                                             className="request-paticipance volunteer__future-events_button"
+                                            disabled={disabled}
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 handleRequest(index);

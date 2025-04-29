@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
 import EventDetailsModal from '../modals/EventDetailsModal';
 import { EventForOrganiser } from '../shared/interfaces';
-import { formatDate, formatDateTime, TimeRange } from '../../../global_functions/Datetime_redact';
+import { formatDateTime } from '../../../global_functions/Datetime_redact';
 import { useModal } from '../../../global_functions/Modal_window'; // Импортируем useModal
 
 const UpcomingEvents: React.FC<{ 

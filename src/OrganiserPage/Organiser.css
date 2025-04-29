@@ -409,7 +409,8 @@ margin: 20px 0;
 }
 
 .time-section {
-  margin-bottom: auto;
+  /* margin-bottom: auto; */
+  margin: 5px 15px;
 }
 
 /* Адаптивность */
@@ -517,10 +518,4 @@ margin: 20px 0;
 h3 {
   margin-top: 5px;
   margin-bottom: 5px;
-}
-
-.request-data {
-  font-style: oblique;
-  color: rgba(90, 79, 79, 0.9);
-  margin: 5px 0 0 0; 
 }

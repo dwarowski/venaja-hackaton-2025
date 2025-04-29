@@ -1,11 +1,6 @@
-// Добавляем компонент для отображения мероприятий, требующих завершения
-// Обновляем компонент CompletionEvents
-
-// CompletionEvents.tsx
-import React, { useState } from 'react';
 import CompletionModal from '../modals/CompletionModal';
-import { formatDate, formatDateTime, TimeRange } from '../../../global_functions/Datetime_redact'; 
-import { CompletionEvent, Participant, Attendance } from '../shared/interfaces'; // Импорт интерфейсо
+import { formatDateTime } from '../../../global_functions/Datetime_redact'; 
+import { CompletionEvent } from '../shared/interfaces'; // Импорт интерфейсо
 import { useModal } from '../../../global_functions/Modal_window';
 const CompletionEvents: React.FC<{ 
   events: CompletionEvent[];
