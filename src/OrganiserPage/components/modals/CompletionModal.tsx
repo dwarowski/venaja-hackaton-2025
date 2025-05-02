@@ -40,40 +40,33 @@ const CompletionModal: React.FC<{
         <h2>{event.title}</h2>
       </div>
       <p><strong>Дата:</strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
-      <div className="completion-modal">
-        <div className="participants-list">
-          <div className="table-header">
-            <span>Участник</span>
-            <span>Дата рождения</span>
-            <span>Присутствие</span>
-          </div>
-          
+      <div className='scrollable-table-container members'>
+        <table className='completion-table'>
+          <thead>
+            <tr>
+              <th>Участник</th>
+              <th>Дата рождения</th>
+              <th>Присутствие</th>
+            </tr>
+          </thead>
+          <tbody>
           {event.participants.map((participant: Participant) => (
-            <div key={participant.id} className="participant-row">
-              <div>{participant.name} {participant.surname}</div>
-              <div>{formatDate(participant.birthDate)}</div>
-              <input
-                type="checkbox"
-                checked={attendances.find((a: Attendance) => 
-                  a.participantId === participant.id)?.isPresent || false
-                }
-                onChange={() => handleCheckboxChange(participant.id)}
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="actions">
-          <button 
-            className="confirm-button" 
-            onClick={() => onConfirm(attendances)}
-          >
-            Завершить
-          </button>
-          <button className="cancel-button" onClick={onClose}>
-            Отмена
-          </button>
-        </div>
+                <tr key={participant.id} className="">
+                  <td>{participant.name} {participant.surname}</td>
+                  <td>{formatDate(participant.birthDate)}</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={attendances.find((a: Attendance) => 
+                        a.participantId === participant.id)?.isPresent || false
+                      }
+                      onChange={() => handleCheckboxChange(participant.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
