@@ -29,11 +29,10 @@ import { formatDateTime, formatDate } from '../../../global_functions/Datetime_r
                     <p className='event-description'>{request.description}</p>
                     <p className='additional-data'>
                       <span>
-                        Статус: {request.status === 'pending' ? 'На рассмотрении' : 'Отклонено'}
+                         Дата создания: {formatDate(request.creationDate) + " "}
                       </span>
-                      ⠀
                       <span>
-                         Дата создания: {formatDate(request.creationDate)}
+                        Статус: {request.status === 'pending' ? 'На рассмотрении' : 'Отклонено'}
                       </span>
                     </p>
                   </div>

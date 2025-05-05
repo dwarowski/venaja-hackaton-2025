@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CompletionModal from '../modals/CompletionModal';
-import { formatDateTime } from '../../../global_functions/Datetime_redact'; 
+import { formatDateTime, formatDate } from '../../../global_functions/Datetime_redact'; 
 import { CompletionEvent, ComplitionParticipants} from '../shared/interfaces'; // Импорт интерфейсо
 import { useModal } from '../../../global_functions/Modal_window';
 
@@ -85,6 +85,12 @@ const CompletionEvents: React.FC<{
                                   </div>
                               </div>
                                 <p className='event-description'>{event.description}</p>
+                                <p className='additional-data'>
+                                  <span>
+                                      Дата создания: {formatDate(event.creationDate)}
+                                  </span>
+                                </p>
+
                             </div>
                             <div className="button-container">
                                 <button

@@ -42,7 +42,8 @@ const EventDetailsModal: React.FC<{
       <div className="modal-header">
         <h2>{event.title}</h2>
       </div>
-      <p><strong>Дата:</strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
+      <p><strong>Дата создания: </strong>{formatDate(event.creationDate)}</p>
+      <p><strong>Дата проведения: </strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
       <p><strong>Описание:</strong> {event.description}</p>
       {/* Таблица участников */}
       <div className="section">

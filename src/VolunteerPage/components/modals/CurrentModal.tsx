@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDateTime } from '../../../global_functions/Datetime_redact';
+import { formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
 import { Event } from '../../../global_functions/global_interfaces';
 
 interface EventModalProps {
@@ -19,7 +19,8 @@ const CurrentModal: React.FC<EventModalProps> = ({ event, isOpen, isClosing, onC
                 <div className='modal-header'>
                     <h2>{event.title}</h2>
                 </div>
-                <p><strong>Дата:</strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
+                <p><strong>Дата создания: </strong>{formatDate(event.creationDate)}</p>
+                <p><strong>Дата проведения: </strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
                 <p><strong>Описание:</strong> {event.description}</p>
                 <div className='actions'>
                     <button onClick={onClose}>Понял</button>

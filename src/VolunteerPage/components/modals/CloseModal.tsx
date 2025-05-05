@@ -1,6 +1,6 @@
 // components/VolunteerEventModal.tsx
 import React from 'react';
-import { TimeRange, formatDateTime } from '../../../global_functions/Datetime_redact';
+import { TimeRange, formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
 import { EventForVolunteer} from '../shared/interfaces';
 
 interface VolunteerEventModalProps {
@@ -29,7 +29,8 @@ const CloseModal: React.FC<VolunteerEventModalProps> = ({
         <div className='modal-header'>
           <h2>{event.title}</h2>
         </div>
-        <p><strong>Дата:</strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
+        <p><strong>Дата создания: </strong>{formatDate(event.creationDate)}</p>
+        <p><strong>Дата проведения: </strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
         <p><strong>Описание:</strong> {event.description}</p>
         {event.accepted ? (
           <p><strong>Статус:</strong> {calculateTimeDifference(event.eventDate)} часов</p>

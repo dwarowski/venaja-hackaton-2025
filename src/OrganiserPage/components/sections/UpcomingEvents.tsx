@@ -1,6 +1,6 @@
 import EventDetailsModal from '../modals/EventDetailsModal';
 import { EventForOrganiser } from '../shared/interfaces';
-import { formatDateTime } from '../../../global_functions/Datetime_redact';
+import { formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
 import { useModal } from '../../../global_functions/Modal_window'; // Импортируем useModal
 
 const UpcomingEvents: React.FC<{ 
@@ -28,6 +28,11 @@ const UpcomingEvents: React.FC<{
                   </div>
               </div>
               <p className='event-description'>{event.description}</p>
+              <p className='additional-data'>
+                <span>
+                    Дата создания: {formatDate(event.creationDate)}
+                </span>
+              </p>
             </div>
           </li>
         ))}

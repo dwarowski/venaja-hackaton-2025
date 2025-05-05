@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TimeRange, formatDateTime } from '../../../global_functions/Datetime_redact';
+import { TimeRange, formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
 import { EventForVolunteer, EventsProps } from '../shared/interfaces';
 import { useModal } from '../../../global_functions/Modal_window';
 import CloseModal from '../modals/CloseModal';
@@ -58,12 +58,16 @@ const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
                         </div>
                     </div>
                     <p className='event-description'>{event.description}</p>
-                    <p className='additional-data'> {
-              event.accepted ? (
-                <span>Посещаемость: {calculateTimeDifference(event.eventDate)} часов</span>) :
-                (<span>Посещаемость: Отсутствовал</span>)
-              }
-            </p>
+                    <p className='additional-data'>
+                      <span>
+                          Дата создания: {formatDate(event.creationDate)}
+                      </span>
+                      {
+                      event.accepted ? (
+                        <span> Посещаемость: {calculateTimeDifference(event.eventDate)} часов</span>) :
+                        (<span> Посещаемость: Отсутствовал</span>)
+                      }
+                    </p>
                   </div>
             </li>
           );

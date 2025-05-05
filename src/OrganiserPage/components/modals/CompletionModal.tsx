@@ -29,7 +29,8 @@ const CompletionModal: React.FC<CompletionModalProps> = ({
       <div className='modal-header'>
         <h2>{event.title}</h2>
       </div>
-      <p><strong>Дата:</strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
+      <p><strong>Дата создания: </strong>{formatDate(event.creationDate)}</p>
+      <p><strong>Дата проведения: </strong> {formatDateTime(event.eventDate[0])} - {formatDateTime(event.eventDate[1])}</p>
       <div className='scrollable-table-container members'>
         <table className='completion-table'>
           <thead>

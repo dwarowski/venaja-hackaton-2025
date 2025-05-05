@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDateTime } from '../../../global_functions/Datetime_redact';
+import { formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
 import { EventsProps } from '../shared/interfaces';
 import { useModal } from '../../../global_functions/Modal_window';
 import CurrentModal from '../modals/CurrentModal';
@@ -23,6 +23,11 @@ const MyEvents: React.FC<EventsProps> = ({ events }) => {
                   </div>
               </div>
               <p className='event-description'>{event.description}</p>
+              <p className='additional-data'>
+                <span>
+                    Дата создания: {formatDate(event.creationDate)}
+                </span>
+              </p>
             </div>
           </li>
         ))}

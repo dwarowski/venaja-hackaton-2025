@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDateTime } from '../../../global_functions/Datetime_redact';
+import { formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
 import { EventForVolunteer } from '../shared/interfaces';
 
 interface VolunteerEventModalProps {
@@ -28,8 +28,9 @@ const FutureModal: React.FC<VolunteerEventModalProps> = ({
                 <div className="modal-header">
                     <h2>{event.title}</h2>
                 </div>
+                <p><strong>Дата создания: </strong>{formatDate(event.creationDate)}</p>
                 <p>
-                    <strong>Дата:</strong>{' '}
+                    <strong>Дата проведения:</strong>{' '}
                     {event.eventDate
                         ? `${formatDateTime(event.eventDate[0])} - ${formatDateTime(event.eventDate[1])}`
                         : 'Время не указано'}
