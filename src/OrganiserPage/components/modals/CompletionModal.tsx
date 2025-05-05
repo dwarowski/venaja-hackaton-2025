@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { formatDate, formatDateTime } from '../../../global_functions/Datetime_redact';
-// Импортируем необходимые интерфейсы
 import { CompletionEvent, ComplitionParticipants } from '../shared/interfaces';
 
 interface CompletionModalProps {
@@ -17,12 +16,12 @@ const CompletionModal: React.FC<CompletionModalProps> = ({
   onConfirm 
 }) => {
   const handleCheckboxChange = (id: number) => {
-    console.log("Ты много насрал навалил как турист что банонов сожрал наконец-то я все говно откачал")
-    const updated = participants.map(p => 
+    const updated = participants.map(p =>
       p.id === id ? { ...p, isExisted: !p.isExisted } : p
     );
     onConfirm(updated);
   };
+  
 
   return (
     <div className="modal-content complitionevent-modal"
@@ -41,21 +40,29 @@ const CompletionModal: React.FC<CompletionModalProps> = ({
             </tr>
           </thead>
           <tbody>
-          {event.participants.map((participant: ComplitionParticipants) => (
-                <tr key={participant.id} className="">
-                  <td>{participant.name} {participant.surname}</td>
-                  <td>{formatDate(participant.birthDate)}</td>
-                  <td>
+            {participants.map((participant: ComplitionParticipants) => (
+              <tr key={participant.id}>
+                <td>{participant.name} {participant.surname}</td>
+                <td>{formatDate(participant.birthDate)}</td>
+                <td className="checkbox-cell">
+                  <label className="custom-checkbox-wrapper">
                     <input
                       type="checkbox"
                       checked={participant.isExisted}
                       onChange={() => handleCheckboxChange(participant.id)}
                     />
-                  </td>
-                </tr>
-              ))}
+                    <span className="custom-checkbox" />
+                  </label>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
+      </div>
+      <div className="actions">
+        <button type="submit" className="button-active">
+          Подтверждение
+        </button>
       </div>
     </div>
   );

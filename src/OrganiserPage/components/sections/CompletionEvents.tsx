@@ -6,28 +6,45 @@ import { useModal } from '../../../global_functions/Modal_window';
 
 const useCompletionModal = () => {
   const modal = useModal();
-  const [participants, setParticipants] = useState<ComplitionParticipants[]>([]);
+  const [participantsMap, setParticipantsMap] = useState<Record<number, ComplitionParticipants[]>>({});
 
   const openCompletionModal = (event: CompletionEvent, index: number) => {
-    // Вызываем оригинальный openModal
     modal.openModal(event, index);
-    
-    // Добавляем свою логику инициализации
-    setParticipants(
-      event.participants.map(p => ({
+
+    setParticipantsMap(prev => {
+      if (prev[event.id]) return prev;
+
+      const initialParticipants = event.participants.map(p => ({
         ...p,
         isExisted: p.isExisted !== undefined ? p.isExisted : true
-      }))
-    );
+      }));
+
+      return { ...prev, [event.id]: initialParticipants };
+    });
   };
+
+  const setParticipants = (updated: ComplitionParticipants[]) => {
+    if (!modal.selectedEvent?.event) return;
+    const eventId = modal.selectedEvent.event.id;
+
+    setParticipantsMap(prev => ({
+      ...prev,
+      [eventId]: updated
+    }));
+  };
+
+  const participants = modal.selectedEvent?.event
+    ? participantsMap[modal.selectedEvent.event.id] || []
+    : [];
 
   return {
     ...modal,
     participants,
     setParticipants,
-    openModal: openCompletionModal // Переопределяем openModal
+    openModal: openCompletionModal
   };
 };
+
 
 const CompletionEvents: React.FC<{ 
   events: CompletionEvent[];
