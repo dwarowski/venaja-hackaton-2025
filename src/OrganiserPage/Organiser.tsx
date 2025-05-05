@@ -6,22 +6,14 @@ import CompletionEvents from './components/sections/CompletionEvents';
 import { EventForOrganiser, CompletionEvent, EventRequest 
 } from './components/shared/interfaces';
 import { TimeRange} from '../global_functions/Datetime_redact';
+import { useButton } from '../global_functions/Button_hook';
 
 const OrganiserPage: React.FC = () => {
   const tabsRef = useRef<HTMLDivElement>(null);
+  const [activeTab, setTab] = useState<'upcoming' | 'pending' | 'completion'>('upcoming');
+  const { scrollLeft, scrollRight } = useButton();
+  const [showNewEventForm, setShowNewEventForm] = useState(false);
 
-  const scrollLeft = () => {
-    if (tabsRef.current) {
-      tabsRef.current.scrollBy({ left: -150, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (tabsRef.current) {
-      tabsRef.current.scrollBy({ left: 150, behavior: 'smooth' });
-    }
-  };
-  const [activeTab, setActiveTab] = useState<'upcoming' | 'pending' | 'completion'>('upcoming');
   const [events, setEvents] = useState<EventForOrganiser[]>([
     {
       id: 1,
@@ -30,74 +22,11 @@ const OrganiserPage: React.FC = () => {
       eventDate: [new Date('2023-12-01T10:00:00'), new Date('2023-12-01T12:00:00')] as TimeRange,
       participants: [
         { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22') },
-        { id: 3, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 4, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 5, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 6, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 7, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 8, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 9, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 10, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') }
       ],
       applications: [
-        { 
-          id: 1, 
-          name: 'Алексей', 
-          surname: 'Смирнов', 
-          birthDate: new Date('1995-03-10'),
-          status: 'pending'
-        },
-        { 
-          id: 2, 
-          name: 'Алексей', 
-          surname: 'Смирнов', 
-          birthDate: new Date('1995-03-10'),
-          status: 'pending'
-        },
-        { 
-          id: 3, 
-          name: 'Алексей', 
-          surname: 'Смирнов', 
-          birthDate: new Date('1995-03-10'),
-          status: 'pending'
-        },
-        { 
-          id: 4, 
-          name: 'Алексей', 
-          surname: 'Смирнов', 
-          birthDate: new Date('1995-03-10'),
-          status: 'pending'
-        },
-        { 
-          id: 5, 
-          name: 'Алексей', 
-          surname: 'Смирнов', 
-          birthDate: new Date('1995-03-10'),
-          status: 'pending'
-        },
-        { 
-          id: 6, 
-          name: 'Алексей', 
-          surname: 'Смирнов', 
-          birthDate: new Date('1995-03-10'),
-          status: 'pending'
-        },
-        { 
-          id: 7, 
-          name: 'Алексей', 
-          surname: 'Смирнов', 
-          birthDate: new Date('1995-03-10'),
-          status: 'pending'
-        },
-        { 
-          id: 8, 
-          name: 'Алексей', 
-          surname: 'Смирнов', 
-          birthDate: new Date('1995-03-10'),
-          status: 'pending'
-        }
-      ]
+        { id: 1, name: 'Алексей', surname: 'Смирнов', birthDate: new Date('1995-03-10'), status: 'pending' },
+      ],
+      creationDate: new Date(new Date().getTime() - 1000 * 60 * 60 * 24) // Создание на день раньше
     },
     {
       id: 2,
@@ -109,18 +38,13 @@ const OrganiserPage: React.FC = () => {
         { id: 2, name: 'Запар', surname: 'Ива', birthDate: new Date('1985-08-22') }
       ],
       applications: [
-        { 
-          id: 1, 
-          name: 'ИИИИИИВАААААААН', 
-          surname: 'ЗАПААААААААРА', 
-          birthDate: new Date('1995-03-10'),
-          status: 'pending'
-        }
-      ]
+        { id: 1, name: 'ИИИИИИВАААААААН', surname: 'ЗАПААААААААРА', birthDate: new Date('1995-03-10'), status: 'pending' }
+      ],
+      creationDate: new Date(new Date().getTime() - 1000 * 60 * 60 * 48) // Создание на два дня раньше
     }
   ]);
   
-
+  
   const [completionEvents, setCompletionEvents] = useState<CompletionEvent[]>([
     {
       id: 1,
@@ -130,7 +54,8 @@ const OrganiserPage: React.FC = () => {
       participants: [
         { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date("1990-05-15"), isExisted: true},
         { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date("1985-08-22"), isExisted: true}
-      ]
+      ],
+      creationDate: new Date(new Date().getTime() - 1000 * 60 * 60 * 24) // Создание на день раньше
     },
     {
       id: 2,
@@ -150,13 +75,12 @@ const OrganiserPage: React.FC = () => {
         { id: 10, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22'), isExisted: false },
         { id: 11, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15'), isExisted: false },
         { id: 12, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22'), isExisted: false }
-      ]
+      ],
+      creationDate: new Date(new Date().getTime() - 1000 * 60 * 60 * 48) // Создание на два дня раньше
     },
   ]);
   
-  const [showNewEventForm, setShowNewEventForm] = useState(false);
-
-
+  
   const handleAcceptApplication = (eventId: number, appId: number) => {
     setEvents(events.map(event => {
       if (event.id === eventId) {
@@ -220,58 +144,56 @@ const [eventRequests, setEventRequests] = useState<EventRequest[]>([
   }
 ]);
 
-  
-  const handleDeleteRequest = (requestId: number) => {
-    setEventRequests(eventRequests.filter(r => r.id !== requestId));
-  };
+const handleDeleteRequest = (requestId: number) => {
+  setEventRequests(eventRequests.filter(r => r.id !== requestId));
+};
+
+const toggleNewEventForm = () => {
+  setShowNewEventForm(prev => !prev);
+};
   
   return (
     <div className="parent">
       <div className="tabs-row">
-        <button className="scroll-button left" onClick={scrollLeft}>←</button>
+        <button className="scroll-button left" onClick={() => scrollLeft(tabsRef)}>←</button>
 
         <div className="tabs-container" ref={tabsRef}>
           <button
             className={`tab-button ${activeTab === 'upcoming' ? 'button-active' : 'button-inactive'}`}
-            onClick={() => {
-              setActiveTab('upcoming');
-              setShowNewEventForm(false);
-            }}
+            onClick={() => { setTab('upcoming')}}
           >
             Предстоящие мероприятия
           </button>
           <button
             className={`tab-button ${activeTab === 'pending' ? 'button-active' : 'button-inactive'}`}
-            onClick={() => {setActiveTab('pending'); setShowNewEventForm(false);}}
+            onClick={() => { setTab('pending');}}
           >
             Заявки на рассмотрении
           </button>
           <button
             className={`tab-button ${activeTab === 'completion' ? 'button-active' : 'button-inactive'}`}
-            onClick={() => {setActiveTab('completion'); setShowNewEventForm(false);}}
+            onClick={() => {setTab('completion') }}
           >
             Требующие завершения
           </button>
           <button
               className={`tab-button ${showNewEventForm ? 'button-active' : 'button-inactive'}`}
-              onClick={() => setShowNewEventForm(true)
-            }
+              onClick={toggleNewEventForm}
           >
             Подать заявку на новое мероприятие
           </button>
         </div>
-        <button className="scroll-button right" onClick={scrollRight}>→</button>
+        <button className="scroll-button right" onClick={() => scrollRight(tabsRef)}>→</button>
       </div>
-
 
       <div className="child">
         <div className='EventsList'>
           {activeTab === 'upcoming' && (
-              <UpcomingEvents 
-                events={events}
-                onAcceptApplication={handleAcceptApplication}
-                onRejectApplication={handleRejectApplication}
-              />
+            <UpcomingEvents 
+              events={events}
+              onAcceptApplication={handleAcceptApplication}
+              onRejectApplication={handleRejectApplication}
+            />
           )}
 
           {activeTab === 'pending' && (

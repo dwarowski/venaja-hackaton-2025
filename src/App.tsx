@@ -16,8 +16,8 @@ function App() {
         </div>
       </header>
       <ModalProvider>
-      {/* <Volunteer></Volunteer> */}
-       <OrganiserPage></OrganiserPage>
+        <Volunteer></Volunteer>
+       {/* <OrganiserPage></OrganiserPage> */}
        </ModalProvider>
       <footer>
         <p>Powered by Venaja</p>

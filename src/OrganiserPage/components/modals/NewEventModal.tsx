@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { EventForOrganiser } from '../shared/interfaces';
+import { newDate } from 'react-datepicker/dist/date_utils';
 
 const NewEventModal: React.FC<{ 
   onCreate: (newEvent: Omit<EventForOrganiser, 'id' | 'participants' | 'applications'>) => void;
@@ -18,6 +19,7 @@ const NewEventModal: React.FC<{
       title,
       description,
       eventDate: [new Date(startDate), new Date(endDate)],
+      creationDate: new Date()
     });
   };
 

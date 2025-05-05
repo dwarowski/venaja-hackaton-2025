@@ -23,7 +23,6 @@ export interface EventForOrganiser extends Event {
 
 export interface EventRequest extends Event{
   status: 'pending' | 'rejected';
-  creationDate: Date;
 }
 
 export interface CompletionEvent extends Event {

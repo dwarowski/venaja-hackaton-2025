@@ -5,4 +5,5 @@ export interface Event {
     title: string;
     eventDate: TimeRange;
     description: string;
+    creationDate: Date;
 }
