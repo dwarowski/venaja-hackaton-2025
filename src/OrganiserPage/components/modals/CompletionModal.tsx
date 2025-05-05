@@ -1,36 +1,27 @@
 import React, { useState } from 'react';
 import { formatDate, formatDateTime } from '../../../global_functions/Datetime_redact';
 // Импортируем необходимые интерфейсы
-import { CompletionEvent, Attendance, Participant } from '../shared/interfaces';
+import { CompletionEvent, ComplitionParticipants } from '../shared/interfaces';
 
-// interface CompletionModalProps {
-//   event: CompletionEvent;
-//   onClose: () => void;
-//   onConfirm: (attendances: Attendance[]) => void;
-// }
-
-const CompletionModal: React.FC<{
+interface CompletionModalProps {
   event: CompletionEvent;
+  participants: ComplitionParticipants[];
   onClose: () => void;
-  onConfirm: (attendances: Attendance[]) => void;
-}> = ({ event, onClose, onConfirm}) => {
-  // Явно указываем тип для состояния
-  const [attendances, setAttendances] = useState<Attendance[]>(
-    event.participants.map((p: Participant) => ({
-      participantId: p.id,
-      isPresent: true
-    }))
-  );
+  onConfirm: (participants: ComplitionParticipants[]) => void;
+}
 
-  // Добавляем типы для параметров
-  const handleCheckboxChange = (participantId: number) => {
-    setAttendances((prev: Attendance[]) => 
-      prev.map((att: Attendance) => 
-        att.participantId === participantId 
-          ? { ...att, isPresent: !att.isPresent } 
-          : att
-      )
+const CompletionModal: React.FC<CompletionModalProps> = ({ 
+  event, 
+  participants, 
+  onClose, 
+  onConfirm 
+}) => {
+  const handleCheckboxChange = (id: number) => {
+    console.log("Ты много насрал навалил как турист что банонов сожрал наконец-то я все говно откачал")
+    const updated = participants.map(p => 
+      p.id === id ? { ...p, isExisted: !p.isExisted } : p
     );
+    onConfirm(updated);
   };
 
   return (
@@ -50,16 +41,14 @@ const CompletionModal: React.FC<{
             </tr>
           </thead>
           <tbody>
-          {event.participants.map((participant: Participant) => (
+          {event.participants.map((participant: ComplitionParticipants) => (
                 <tr key={participant.id} className="">
                   <td>{participant.name} {participant.surname}</td>
                   <td>{formatDate(participant.birthDate)}</td>
                   <td>
                     <input
                       type="checkbox"
-                      checked={attendances.find((a: Attendance) => 
-                        a.participantId === participant.id)?.isPresent || false
-                      }
+                      checked={participant.isExisted}
                       onChange={() => handleCheckboxChange(participant.id)}
                     />
                   </td>

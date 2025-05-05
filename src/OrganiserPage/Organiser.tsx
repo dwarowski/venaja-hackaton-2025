@@ -128,8 +128,8 @@ const OrganiserPage: React.FC = () => {
       title: 'IT-волонтерство для начинающих',
       description: 'IT-волонтерство для начинающихописание',
       participants: [
-        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date("1990-05-15") },
-        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date("1985-08-22") }
+        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date("1990-05-15"), isExisted: true},
+        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date("1985-08-22"), isExisted: true}
       ]
     },
     {
@@ -138,18 +138,18 @@ const OrganiserPage: React.FC = () => {
       title: 'IT-ХИ-ХИ для ха-ха',
       description: 'IT-ХИ-ХИ для ха-ха',
       participants: [
-        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22') },
-        { id: 3, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 4, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22') },
-        { id: 5, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 6, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22') },
-        { id: 7, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 8, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22') },
-        { id: 9, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 10, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22') },
-        { id: 11, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15') },
-        { id: 12, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22') }
+        { id: 1, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15'), isExisted: false},
+        { id: 2, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22'), isExisted: false },
+        { id: 3, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15'), isExisted: false },
+        { id: 4, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22'), isExisted: false },
+        { id: 5, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15'), isExisted: false },
+        { id: 6, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22'), isExisted: false },
+        { id: 7, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15'), isExisted: false },
+        { id: 8, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22'), isExisted: false },
+        { id: 9, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15'), isExisted: false },
+        { id: 10, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22'), isExisted: false },
+        { id: 11, name: 'Иван', surname: 'Иванов', birthDate: new Date('1990-05-15'), isExisted: false },
+        { id: 12, name: 'Мария', surname: 'Петрова', birthDate: new Date('1985-08-22'), isExisted: false }
       ]
     },
   ]);

@@ -6,31 +6,26 @@ export interface Participant {
     name: string;
     surname: string;
     birthDate: Date;
-  }
+}
+
+export interface ComplitionParticipants extends Participant {
+  isExisted: boolean;
+}
   
-  export interface Application {
-    id: number;
-    name: string;
-    surname: string;
-    birthDate: Date;
-    status: 'pending' | 'approved' | 'rejected';
-  }
-  
-  export interface EventForOrganiser extends Event {
-    participants: Participant[];
-    applications: Application[];
-  }
-  
-  export interface EventRequest extends Event{
-    status: 'pending' | 'rejected';
-    creationDate: Date;
-  }
-  
-  export interface Attendance {
-    participantId: number;
-    isPresent: boolean;
-  }
-  
-  export interface CompletionEvent extends Event {
-    participants: Participant[];
-  }
+export interface Application extends Participant {
+  status: 'pending' | 'approved' | 'rejected';
+}
+
+export interface EventForOrganiser extends Event {
+  participants: Participant[];
+  applications: Application[];
+}
+
+export interface EventRequest extends Event{
+  status: 'pending' | 'rejected';
+  creationDate: Date;
+}
+
+export interface CompletionEvent extends Event {
+  participants: ComplitionParticipants[];
+}
