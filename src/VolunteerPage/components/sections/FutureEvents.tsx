@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { formatDateTime } from '../global_functions/Datetime_redact';
-import { EventForVolunteer } from './Volunteer';
-import { useModal } from '../global_functions/Modal_window';
-
-interface EventsProps {
-  events: EventForVolunteer[];
-}
+import { formatDateTime } from '../../../global_functions/Datetime_redact';
+import { EventForVolunteer, EventsProps } from '../shared/interfaces';
+import { useModal } from '../../../global_functions/Modal_window';
+import FutureModal from '../modals/FutureModal';
 
 const FutureEvents: React.FC<EventsProps> = ({ events }) => {
     const { isModalOpen, isClosing, selectedEvent, openModal, closeModal } = useModal();
@@ -17,14 +14,13 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
         }
     };
 
-    // Вспомогательная функция для получения текста и состояния кнопки
     const getButtonState = (index: number) => {
         const event = events[index];
         const isAccepted = event.accepted;
         const hasRequested = requestedEvents.includes(index);
         let text = 'Подать заявку';
 
-        if (isAccepted) text = 'Прянято';
+        if (isAccepted) text = 'Принято';
         else if (hasRequested) text = 'На рассмотрении';
 
         return {
@@ -48,8 +44,8 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
                                             <p className='events_el_title-box_name'>{event.title}</p>
                                             <div className='events_el_title-box_time'>
                                                 <div className='events_el_title-box_time-block'>
-                                                    <p className=''>{formatDateTime(event.eventDate[0])}</p>
-                                                    <p className=''>{formatDateTime(event.eventDate[1])}</p>
+                                                    <p>{formatDateTime(event.eventDate[0])}</p>
+                                                    <p>{formatDateTime(event.eventDate[1])}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -69,44 +65,21 @@ const FutureEvents: React.FC<EventsProps> = ({ events }) => {
                                     </div>
                                 </div>
                             </div>
-
                         </li>
                     );
                 })}
             </ul>
+
             {isModalOpen && selectedEvent !== null && (
-            <div
-                className={`modal-overlay ${isModalOpen ? 'open' : ''} ${isClosing ? 'closing' : ''}`}
-                onClick={closeModal}
-            >
-                <div className="modal-content volunteers-modal" onClick={(e) => e.stopPropagation()}>
-                    <div className='modal-header'>
-                        <h2>{selectedEvent.event.title}</h2>
-                    </div>
-                    <p><strong>Дата:</strong> {selectedEvent.event.eventDate ? `${formatDateTime(selectedEvent.event.eventDate[0])} - ${formatDateTime(selectedEvent.event.eventDate[1])}` : 'Время не указано'}</p>
-                    <p><strong>Описание:</strong> {selectedEvent.event.description}</p>
-                    <div className='actions'>
-                    {/* Кнопка заявки в модалке */}
-                    {(() => {
-                        const selectedEventIndex = events.findIndex(event => event.id === selectedEvent.event.id);
-                        const { text, disabled } = getButtonState(selectedEventIndex);
-
-                        return (
-                            <button
-                                className="request-paticipance"
-                                disabled={disabled}
-                                onClick={() => handleRequest(selectedEventIndex)}
-                            >
-                                {text}
-                            </button>
-                        );
-                    })()}
-
-                    <button onClick={closeModal}>Понял</button>
-                    </div>
-                </div>
-            </div>
-            )}   
+                <FutureModal
+                    event={selectedEvent.event as EventForVolunteer}
+                    isOpen={isModalOpen}
+                    isClosing={isClosing}
+                    onClose={closeModal}
+                    onRequest={() => handleRequest(selectedEvent.index)}
+                    buttonState={getButtonState(selectedEvent.index)}
+                />
+            )}
         </div>
     );
 };

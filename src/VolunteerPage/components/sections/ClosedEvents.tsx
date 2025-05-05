@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { TimeRange, formatDateTime } from '../global_functions/Datetime_redact';
-import { EventForVolunteer } from './Volunteer';
-import { useModal } from '../global_functions/Modal_window';
+import { TimeRange, formatDateTime } from '../../../global_functions/Datetime_redact';
+import { EventForVolunteer, EventsProps } from '../shared/interfaces';
+import { useModal } from '../../../global_functions/Modal_window';
+import CloseModal from '../modals/CloseModal';
 
-interface EventsProps {
-  events: EventForVolunteer[];
-}
-
-// Компонент для отображения списка событий
 const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
   const { isModalOpen, isClosing, selectedEvent, openModal, closeModal } = useModal();
   const volunteerEvent = selectedEvent?.event as EventForVolunteer | null;
@@ -74,30 +70,13 @@ const ClosedEvents: React.FC<EventsProps> = ({ events }) => {
         })}
       </ul>
 
-      {/* Модальное окно */}
-      {isModalOpen && volunteerEvent !== null && (
-        <div
-          className={`modal-overlay ${isModalOpen ? 'open' : ''} ${isClosing ? 'closing' : ''}`}
-          onClick={closeModal}
-        >
-          <div className="modal-content volunteers-modal" onClick={(e) => e.stopPropagation()}>
-            <div className='modal-header'>
-              <h2>{volunteerEvent.title}</h2>
-            </div>
-            <p><strong>Дата:</strong> {formatDateTime(volunteerEvent.eventDate[0])} - {formatDateTime(volunteerEvent.eventDate[1])}</p>
-            <p><strong>Описание:</strong> {volunteerEvent.description}</p>
-            {volunteerEvent.accepted ? (
-              <p><strong>Статус:</strong> {calculateTimeDifference(volunteerEvent.eventDate)} часов</p>
-            ) : (
-              <p><strong>Статус:</strong> Отсутствовал</p>
-            )}
-
-            <div className='actions'>
-              <button onClick={closeModal}>Понял</button>
-            </div>
-          </div>
-        </div>
-      )}
+      <CloseModal
+        isOpen={isModalOpen}
+        isClosing={isClosing}
+        event={volunteerEvent}
+        onClose={closeModal}
+        calculateTimeDifference={calculateTimeDifference}
+      />
     </div>
   );
 };

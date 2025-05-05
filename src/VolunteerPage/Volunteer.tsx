@@ -1,16 +1,11 @@
 import React, { useState, useRef} from 'react';
 import './Volunteers.css';
-import MyEvents from './MyEvents';
-import FutureEvents from './FutureEvents';
-import ClodesEvents from './ClosedEvents';
-import {TimeRange} from '../../src/global_functions/Datetime_redact';
-import { Event } from '../global_functions/global_interfaces';
+import MyEvents from './components/sections/MyEvents';
+import FutureEvents from './components/sections/FutureEvents';
+import ClodesEvents from './components/sections/ClosedEvents';
+import { EventForVolunteer } from './components/shared/interfaces';
+import {TimeRange} from '../global_functions/Datetime_redact';
 import { useButton } from '../global_functions/Button_hook';
-
-export interface EventForVolunteer extends Event {
-  accepted: Boolean;
-}
-
 
 const Volunteer: React.FC = () => {
   const tabsRef = useRef<HTMLDivElement>(null);
