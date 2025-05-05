@@ -7,7 +7,7 @@ const NewEventModal: React.FC<{
 }> = ({ onCreate, onClose }) => {
   const [isClosing, setIsClosing] = useState(false);
 
-  const [title] = useState('');
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -52,8 +52,8 @@ const NewEventModal: React.FC<{
               <div className="form-section">
                 <label>Название</label>
                 <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   placeholder="Введите название мероприятия"
                   required
                   className="input-textarea"
