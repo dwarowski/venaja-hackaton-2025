@@ -6,11 +6,19 @@ import ClodesEvents from './components/sections/ClosedEvents';
 import { EventForVolunteer } from './components/shared/interfaces';
 import {TimeRange} from '../global_functions/Datetime_redact';
 import { useButton } from '../global_functions/Button_hook';
+import SortButton from './components/sections/SortControl';
 
 const Volunteer: React.FC = () => {
   const tabsRef = useRef<HTMLDivElement>(null);
   const { scrollLeft, scrollRight } = useButton();
   const [activeTab, setTab] = useState<'my' | 'future' | 'past'>('my');
+  const [sortCriterion, setSortCriterion] = useState<string>('none');
+  const [sortDirection, setSortDirection] = useState<'none' | 'asc' | 'desc'>('none');
+
+const onSortChange = (direction: 'none' | 'asc' | 'desc', criterion: string) => {
+  setSortDirection(direction);
+  setSortCriterion(criterion);
+};
 
   const events = [
     {
@@ -95,6 +103,37 @@ const Volunteer: React.FC = () => {
     }
   ] as EventForVolunteer[];
   
+  const sortEvents = (events: EventForVolunteer[]): EventForVolunteer[] => {
+    if (sortDirection === 'none' || sortCriterion === 'none') return events;
+  
+    const sorted = [...events].sort((a, b) => {
+      let aValue: string | number = '';
+      let bValue: string | number = '';
+  
+      switch (sortCriterion) {
+        case 'title':
+          aValue = a.title.toLowerCase();
+          bValue = b.title.toLowerCase();
+          break;
+        case 'eventDate':
+          aValue = a.eventDate[0].getTime();
+          bValue = b.eventDate[0].getTime();
+          break;
+        case 'creationDate':
+          aValue = a.creationDate.getTime();
+          bValue = b.creationDate.getTime();
+          break;
+        default:
+          return 0;
+      }
+  
+      if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
+      if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
+  
+    return sorted;
+  };
 
   return (
     <div className="parent">
@@ -120,12 +159,17 @@ const Volunteer: React.FC = () => {
         >
           Завершенные события
         </button>
+        
+        {/* Компонент сортировки справа от вкладок */}
+        <div className="sort-panel">
+          <SortButton onChange={onSortChange} />
+        </div>
       </div>
     <button className="scroll-button right" onClick={() => scrollRight(tabsRef)}>→</button>
   </div>
     <div className="child">
       <div className="EventsList">
-        {activeTab === 'my' && <MyEvents events={events} />}
+        {activeTab === 'my' && <MyEvents events={sortEvents(events)} />}
         {activeTab === 'future' && <FutureEvents events={events} />}
         {activeTab === 'past' && <ClodesEvents events={events} />}
       </div> 
