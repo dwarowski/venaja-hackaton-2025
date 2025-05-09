@@ -35,37 +35,48 @@
 .sort-button-wrapper {
   display: flex;
   align-items: center;
-  padding: 6px 10px;
-  border-radius: 8px;
-  transition: background-color 0.2s ease;
-  outline: none;
-  cursor: pointer;
-}
-
-.sort-button-wrapper.active {
-  background-color: #e0f7fa;
-}
-
-.sort-button-wrapper.inactive {
-  background-color: #f5f5f5;
-}
-
-.sort-button-wrapper:focus-visible {
-  box-shadow: 0 0 0 2px #00acc1;
+  height: 100%; /* важно */
+  gap: 0.5rem; /* расстояние между select и иконкой */
+  padding: 0.4rem 1rem; /* такой же паддинг, как у .tab-button */
+  box-sizing: border-box;
 }
 
 .sort-select {
-  margin-right: 8px;
-  padding: 4px 6px;
-  border-radius: 4px;
+  width: 150px;
+  color: black;             /* текст чёрный */
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  height: 100%;
+  outline: none;              /* Убираем стандартную обводку */
+  appearance: none;           /* Убираем стрелку и дефолтный стиль в некоторых браузерах */
+  -webkit-appearance: none;   /* Для Safari/Chrome */
+  -moz-appearance: none; 
 }
 
-.sort-icon-wrapper {
-  transition: transform 0.2s ease;
+.sort-select:focus {
+  outline: none;              /* Убираем фокус-обводку */
+  box-shadow: none;           /* Убираем тень при фокусе */
+}
+
+.sort-select:hover {
+  background-color: white;    /* Убираем hover-эффект */
+  color: black;
+}
+
+/* Стили для выпадающих элементов */
+.sort-select option {
+  background-color: white;
+  color: black;
 }
 
 .sort-icon {
   width: 18px;
   height: 18px;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease;
+  fill: white;
+  stroke: white;
+  transform: translateY(1px);
 }

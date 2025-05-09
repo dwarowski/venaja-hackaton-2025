@@ -41,23 +41,22 @@ const SortButton: React.FC<SortButtonProps> = ({ onChange }) => {
   };
 
   const getIcon = () => {
-    if (sortDirection === 'asc') return <img src="/icons/arrow-up.svg" alt="asc" className="sort-icon" />;
-    if (sortDirection === 'desc') return <img src="/icons/arrow-down.svg" alt="desc" className="sort-icon" />;
-    return <img src="/icons/cross.svg" alt="none" className="sort-icon" />;
+    if (sortDirection === 'asc') return <img src="/chevron-up.svg" alt="asc" className="sort-icon" />;
+    if (sortDirection === 'desc') return <img src="/chevron-down.svg" alt="desc" className="sort-icon" />;
+    return <img src="/x.svg" alt="none" className="sort-icon" />;
   };
 
-  const wrapperClass = `tab-button sort-button-wrapper ${sortDirection === 'none' ? 'inactive' : 'active'}`;
+
   return (
     <div
-      className={wrapperClass}
+      className={`tab-button sort-button-wrapper ${sortDirection === 'none' ? 'button-inactive' : 'button-active'}`}
       onClick={handleClick}
-      tabIndex={0}
       role="button"
       aria-pressed={sortDirection !== 'none'}
     >
       <select
+        className='sort-select'
         ref={selectRef}
-        className="sort-select"
         value={selectedCriterion}
         onChange={handleCriterionChange}
         onClick={(e) => e.stopPropagation()}
@@ -68,7 +67,7 @@ const SortButton: React.FC<SortButtonProps> = ({ onChange }) => {
           </option>
         ))}
       </select>
-      <div className="sort-icon-wrapper">{getIcon()}</div>
+      <div>{getIcon()}</div>
     </div>
   );
 };

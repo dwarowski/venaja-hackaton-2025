@@ -423,8 +423,6 @@ background-color: rgb(180, 183, 185);
   display: flex;
   align-items: center;
   box-sizing: border-box;
-
-
   flex: initial;
   flex-direction: row;
   height: auto;

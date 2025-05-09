@@ -16,7 +16,6 @@ const Volunteer: React.FC = () => {
   const [sortDirection, setSortDirection] = useState<'none' | 'asc' | 'desc'>('none');
 
   const onSortChange = (direction: 'none' | 'asc' | 'desc', criterion: string) => {
-    console.log('Sort Changed:', direction, criterion);  // Логируем направление сортировки
     setSortDirection(direction);
     setSortCriterion(criterion);
   };
@@ -145,43 +144,38 @@ const Volunteer: React.FC = () => {
   return (
     <div className="parent">
       <div className="tabs-row">
-      <button className="scroll-button left" onClick={() => scrollLeft(tabsRef)}>←</button>
-
-      <div className='tabs-container' ref={tabsRef}>
-        <button
-          className={`tab-button ${activeTab === 'my' ? 'button-active' : 'button-inactive'}`}
-          onClick={() => setTab('my')}
-        >
-          Мои события
-        </button>
-        <button
-          className={`tab-button ${activeTab === 'future' ? 'button-active' : 'button-inactive'}`}
-          onClick={() => setTab('future')}
-        >
-          Будущие события
-        </button>
-        <button
-          className={`tab-button ${activeTab === 'past' ? 'button-active' : 'button-inactive'}`}
-          onClick={() => setTab('past')}
-        >
-          Завершенные события
-        </button>
-        
-        {/* Компонент сортировки справа от вкладок */}
-        <div className="tab-button">
+        <button className="scroll-button left" onClick={() => scrollLeft(tabsRef)}>←</button>
+        <div className='tabs-container' ref={tabsRef}>
+          <button
+            className={`tab-button ${activeTab === 'my' ? 'button-active' : 'button-inactive'}`}
+            onClick={() => setTab('my')}
+          >
+            Мои события
+          </button>
+          <button
+            className={`tab-button ${activeTab === 'future' ? 'button-active' : 'button-inactive'}`}
+            onClick={() => setTab('future')}
+          >
+            Будущие события
+          </button>
+          <button
+            className={`tab-button ${activeTab === 'past' ? 'button-active' : 'button-inactive'}`}
+            onClick={() => setTab('past')}
+          >
+            Завершенные события
+          </button>
+          
+          {/* Компонент сортировки справа от вкладок */}
           <SortButton onChange={onSortChange} />
         </div>
-
-
+        <button className="scroll-button right" onClick={() => scrollRight(tabsRef)}>→</button>
       </div>
-    <button className="scroll-button right" onClick={() => scrollRight(tabsRef)}>→</button>
-  </div>
-    <div className="child">
-      <div className="EventsList">
-        {activeTab === 'my' && <MyEvents events={sortEvents(events)} />}
-        {activeTab === 'future' && <FutureEvents events={events} />}
-        {activeTab === 'past' && <ClodesEvents events={events} />}
-      </div> 
+      <div className="child">
+        <div className="EventsList">
+          {activeTab === 'my' && <MyEvents events={sortEvents(events)} />}
+          {activeTab === 'future' && <FutureEvents events={sortEvents(events)} />}
+          {activeTab === 'past' && <ClodesEvents events={sortEvents(events)} />}
+        </div> 
       </div>
     </div>
   );
