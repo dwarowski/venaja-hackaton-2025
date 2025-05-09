@@ -15,10 +15,11 @@ const Volunteer: React.FC = () => {
   const [sortCriterion, setSortCriterion] = useState<string>('none');
   const [sortDirection, setSortDirection] = useState<'none' | 'asc' | 'desc'>('none');
 
-const onSortChange = (direction: 'none' | 'asc' | 'desc', criterion: string) => {
-  setSortDirection(direction);
-  setSortCriterion(criterion);
-};
+  const onSortChange = (direction: 'none' | 'asc' | 'desc', criterion: string) => {
+    console.log('Sort Changed:', direction, criterion);  // Логируем направление сортировки
+    setSortDirection(direction);
+    setSortCriterion(criterion);
+  };
 
   const events = [
     {
@@ -111,15 +112,15 @@ const onSortChange = (direction: 'none' | 'asc' | 'desc', criterion: string) => 
       let bValue: string | number = '';
   
       switch (sortCriterion) {
-        case 'title':
+        case 'alphabet':
           aValue = a.title.toLowerCase();
           bValue = b.title.toLowerCase();
           break;
-        case 'eventDate':
+        case 'startDate':
           aValue = a.eventDate[0].getTime();
           bValue = b.eventDate[0].getTime();
           break;
-        case 'creationDate':
+        case 'createdAt':
           aValue = a.creationDate.getTime();
           bValue = b.creationDate.getTime();
           break;
@@ -133,7 +134,13 @@ const onSortChange = (direction: 'none' | 'asc' | 'desc', criterion: string) => 
     });
   
     return sorted;
+
   };
+
+
+  
+  // const sortedEvents = sortEvents(events);
+  // console.log(sortedEvents);
 
   return (
     <div className="parent">
@@ -161,9 +168,11 @@ const onSortChange = (direction: 'none' | 'asc' | 'desc', criterion: string) => 
         </button>
         
         {/* Компонент сортировки справа от вкладок */}
-        <div className="sort-panel">
+        <div className="tab-button">
           <SortButton onChange={onSortChange} />
         </div>
+
+
       </div>
     <button className="scroll-button right" onClick={() => scrollRight(tabsRef)}>→</button>
   </div>

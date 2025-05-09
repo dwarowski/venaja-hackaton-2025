@@ -30,3 +30,42 @@
   font-size: 13.333px;
   cursor: default;
 }
+
+
+.sort-button-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  outline: none;
+  cursor: pointer;
+}
+
+.sort-button-wrapper.active {
+  background-color: #e0f7fa;
+}
+
+.sort-button-wrapper.inactive {
+  background-color: #f5f5f5;
+}
+
+.sort-button-wrapper:focus-visible {
+  box-shadow: 0 0 0 2px #00acc1;
+}
+
+.sort-select {
+  margin-right: 8px;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.sort-icon-wrapper {
+  transition: transform 0.2s ease;
+}
+
+.sort-icon {
+  width: 18px;
+  height: 18px;
+  transition: opacity 0.2s ease;
+}

@@ -6,6 +6,7 @@ import CurrentModal from '../modals/CurrentModal';
 
 const MyEvents: React.FC<EventsProps> = ({ events }) => {
   const { isModalOpen, isClosing, selectedEvent, openModal, closeModal } = useModal();
+  // console.log(events);
 
   return (
     <div>
