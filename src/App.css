@@ -458,4 +458,6 @@ background-color: rgb(180, 183, 185);
   transition: background-color 0.3s ease;
   cursor: pointer;
   flex-shrink: 0; /* Не сжимаем кнопки */
+  font-size: 14px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

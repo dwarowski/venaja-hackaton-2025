@@ -13,16 +13,20 @@ export const FilterButton: React.FC<DateFilterButtonProps> = ({ onFilterChange }
   const [range, setRange] = useState<TimeRange | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
-  // Закрытие при клике вне
-  useEffect(() => {
+    useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
+        if (ref.current && !ref.current.contains(e.target as Node)) {
         setIsOpen(false);
-      }
+        if (!range) {
+            setTempStart(null);
+            setTempEnd(null);
+        }
+        }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    }, [range]);
+
 
   const handleToggle = () => {
     if (range) {
@@ -43,6 +47,10 @@ export const FilterButton: React.FC<DateFilterButtonProps> = ({ onFilterChange }
       onFilterChange(newRange);
       setIsOpen(false);
     }
+    else {
+        setTempStart(null);
+        setTempEnd(null);
+    }
   };
 
   const displayLabel = range
@@ -50,39 +58,41 @@ export const FilterButton: React.FC<DateFilterButtonProps> = ({ onFilterChange }
     : "Фильтровать по дате";
 
   return (
-    <div ref={ref} className="relative inline-block">
-      <button
-        className={`tab-button ${range ? "button-active" : "button-inactive"}`}
-        onClick={handleToggle}
-      >
-        {displayLabel}
-      </button>
+  <div ref={ref}>
+    <button
+      className={`tab-button sort-button-wrapper ${range ? "button-active" : "button-inactive"}`}
+      onClick={handleToggle}
+    >
+      {displayLabel}
+    </button>
 
       {isOpen && (
-        <div className="calendar-popup absolute bg-white border rounded shadow-md p-3 mt-2 z-10">
-          <label className="block text-sm mb-2">
-            С:
-            <input
-              type="date"
-              className="block w-full mt-1 p-1 border rounded"
-              onChange={(e) => setTempStart(new Date(e.target.value))}
-            />
-          </label>
-          <label className="block text-sm mb-2 mt-2">
-            По:
-            <input
-              type="date"
-              className="block w-full mt-1 p-1 border rounded"
-              onChange={(e) => setTempEnd(new Date(e.target.value))}
-            />
-          </label>
-          <button
-            onClick={applyFilter}
-            disabled={!tempStart || !tempEnd}
-            className="mt-3 w-full bg-blue-500 text-white py-1 rounded hover:bg-blue-600 disabled:bg-gray-300"
-          >
-            Применить
-          </button>
+        <div className="calendar-popup">
+            <div className="data-input">
+                <div>С</div>
+                <div>
+                    <input
+                type="date"
+                onChange={(e) => setTempStart(new Date(e.target.value))}
+                    />
+                </div>
+                <div>по</div>
+                <div>
+                    <input
+                        type="date"
+                        onChange={(e) => setTempEnd(new Date(e.target.value))}
+                    />
+                </div>
+            </div>
+            <div className="data-input-accept">
+                <button
+                    onClick={applyFilter}
+                    disabled={!tempStart || !tempEnd}
+                    className={(!tempStart || !tempEnd) ? "button-inactive" : "button-active"}
+                >     
+                Применить
+                </button>
+            </div>
         </div>
       )}
     </div>

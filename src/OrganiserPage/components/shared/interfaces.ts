@@ -2,10 +2,10 @@ import { TimeRange } from "../../../global_functions/Datetime_redact";
 import { Event } from '../../../global_functions/global_interfaces';
 
 export interface Participant {
-    id: number;
-    name: string;
-    surname: string;
-    birthDate: Date;
+  id: number;
+  name: string;
+  surname: string;
+  birthDate: Date;
 }
 
 export interface ComplitionParticipants extends Participant {
