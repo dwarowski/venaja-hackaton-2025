@@ -1,4 +1,4 @@
-import React, { useState, useRef} from 'react';
+import React, { useState, useRef, useMemo} from 'react';
 import './Volunteers.css';
 import MyEvents from './components/sections/MyEvents';
 import FutureEvents from './components/sections/FutureEvents';
@@ -7,6 +7,8 @@ import { EventForVolunteer } from './components/shared/interfaces';
 import {TimeRange} from '../global_functions/Datetime_redact';
 import { useButton } from '../global_functions/Button_hook';
 import SortButton from './components/sections/SortControl';
+import { FilterButton } from './components/sections/FilterButton';
+import { isWithinInterval } from "date-fns";
 
 const Volunteer: React.FC = () => {
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -136,10 +138,15 @@ const Volunteer: React.FC = () => {
 
   };
 
+  const [filterRange, setFilterRange] = useState<TimeRange | null>(null);
 
-  
-  // const sortedEvents = sortEvents(events);
-  // console.log(sortedEvents);
+  const filteredEvents = useMemo(() => {
+    if (!filterRange) return events;
+    return events.filter(event =>
+      isWithinInterval(event.creationDate, { start: filterRange[0], end: filterRange[1] })
+    );
+  }, [filterRange]);
+
 
   return (
     <div className="parent">
@@ -165,16 +172,17 @@ const Volunteer: React.FC = () => {
             Завершенные события
           </button>
           
-          {/* Компонент сортировки справа от вкладок */}
+          <FilterButton onFilterChange={setFilterRange} />
           <SortButton onChange={onSortChange} />
+
         </div>
         <button className="scroll-button right" onClick={() => scrollRight(tabsRef)}>→</button>
       </div>
       <div className="child">
         <div className="EventsList">
-          {activeTab === 'my' && <MyEvents events={sortEvents(events)} />}
-          {activeTab === 'future' && <FutureEvents events={sortEvents(events)} />}
-          {activeTab === 'past' && <ClodesEvents events={sortEvents(events)} />}
+          {activeTab === 'my' && <MyEvents events={sortEvents(filteredEvents)} />}
+          {activeTab === 'future' && <FutureEvents events={sortEvents(filteredEvents)} />}
+          {activeTab === 'past' && <ClodesEvents events={sortEvents(filteredEvents)} />}
         </div> 
       </div>
     </div>
