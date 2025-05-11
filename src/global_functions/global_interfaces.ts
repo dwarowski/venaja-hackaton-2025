@@ -7,3 +7,9 @@ export interface Event {
     description: string;
     creationDate: Date;
 }
+
+export interface User {
+    login: string;
+    password: string;
+    role: 'volunteer' | 'organiser';
+}
