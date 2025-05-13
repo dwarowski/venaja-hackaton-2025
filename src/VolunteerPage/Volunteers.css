@@ -143,3 +143,14 @@ input[type="date"] {
 input[type="date"]:hover {
   border-color: #888;
 }
+
+/* Редактирование рейтинга */
+.rating_check {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rating_check p {
+  margin: 0;
+}

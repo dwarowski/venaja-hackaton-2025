@@ -22,6 +22,7 @@ const CompletionModal: React.FC<CompletionModalProps> = ({
     onConfirm(updated);
   };
   
+  const [rating, setRating] = useState(0);
 
   return (
     <div className="modal-content complitionevent-modal"

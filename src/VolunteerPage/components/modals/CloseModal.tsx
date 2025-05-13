@@ -1,7 +1,8 @@
 // components/VolunteerEventModal.tsx
-import React from 'react';
+import React, { useState }  from 'react';
 import { TimeRange, formatDateTime, formatDate } from '../../../global_functions/Datetime_redact';
 import { EventForVolunteer} from '../shared/interfaces';
+import StarRating from '../sections/StarComponent';
 
 interface VolunteerEventModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ const CloseModal: React.FC<VolunteerEventModalProps> = ({
   onClose,
   calculateTimeDifference,
 }) => {
+  const [rating, setRating] = useState(0);
   if (!isOpen || !event) return null;
 
   return (
@@ -37,7 +39,10 @@ const CloseModal: React.FC<VolunteerEventModalProps> = ({
         ) : (
           <p><strong>Статус:</strong> Отсутствовал</p>
         )}
-
+        <div className='rating_check'>
+          <p><strong>Оценка события: </strong></p>
+          <StarRating rating={rating} onChange={setRating}/>
+        </div>
         <div className='actions'>
           <button onClick={onClose}>Понял</button>
         </div>
