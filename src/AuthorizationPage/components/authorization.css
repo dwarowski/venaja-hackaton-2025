@@ -1,0 +1,108 @@
+.background {
+    background-image: url("../../assets/images/background.svg");
+    display: flex;
+    flex-direction: row;
+    /* background-color: #000064; */
+    background-color: #000064;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: 100%;
+    width: 100vw;
+}
+
+.left_column {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right_column {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.left_column img {
+    object-fit: cover;
+    width: 100%;
+}
+
+.right_column img {
+    position: absolute;
+    right: 0;
+    object-fit: cover;
+}
+
+.login-container {
+    position: relative;
+    /* width: 50%; */
+    flex-basis: 500px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.991);
+    margin: 15px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+form input {
+    width: 100%;
+    margin: 7px;
+    height: 25px;
+    border-radius: 10px;
+    border-color: #424242;
+    border-width: 1px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+form button {
+    margin-top: 20px;
+    box-sizing: border-box;
+    width: 50%;
+    display: flex;
+    justify-content: center; /* Центрирование текста по горизонтали */
+    align-items: center; /* Центрирование текста по вертикали */
+    height: 2.5rem; /* Высота кнопки */
+    padding: 0 1rem; /* Отступы по бокам */
+    border-radius: 0.5rem;
+    font-weight: 500;
+    line-height: 2rem; /* Высота строки текста */
+    border: none;
+    outline: none;
+    background-color: rgb(36, 178, 62); /* bg-blue-600 */
+    color: white;
+}
+    
+form button:hover {
+    background-color: rgb(28, 109, 43); /* bg-blue-600 */
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 300;
+    font-size: 30px;
+    color: #fff;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+}

@@ -70,13 +70,12 @@ box-sizing: border-box;
 .event-form-container {
   display: flex;
   flex-direction: column;
-  /* gap: 30px;
-  padding: 20px; */
 }
 
 .event-columns {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .form-left-column {

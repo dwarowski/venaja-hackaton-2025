@@ -11,7 +11,7 @@ import {
   Navigate,
   Outlet,
 } from 'react-router-dom';
-import Login from './AuthorizationPage/AuthorizationPage';
+import Login from './AuthorizationPage/components/sections/AuthorizationPage';
 import Volunteer from './VolunteerPage/Volunteer';
 import OrganiserPage from './OrganiserPage/Organiser';
 import { useUser } from './AuthorizationPage/components/sections/UserContext';

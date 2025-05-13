@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { User } from '../global_functions/global_interfaces';
+import { User } from '../../../global_functions/global_interfaces';
 import { useNavigate } from 'react-router-dom';
+import "../authorization.css"
 
 interface LoginProps {
   onLogin: (user: User) => void;
@@ -45,25 +46,36 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="login-container">
-      <h2>Вход</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Логин"
-          value={login}
-          onChange={(e) => setLogin(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Пароль"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && <p className="error">{error}</p>}
-        <button type="submit">Войти</button>
-      </form>
+    <div className='background'>
+      <div className='left_column'>
+        <h1 className=''>СберВолонтерство</h1>
+        <img src='./logo.png'></img>
+      </div>
+      <div className='right_column'>
+        <div className="login-container">
+          <h2>Вход</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Логин"
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {error && <p className="error">{error}</p>}
+            <button type="submit">Войти</button>
+          </form>
+        </div>
+        
+      </div>
+        
     </div>
+    // 
   );
 };
 
