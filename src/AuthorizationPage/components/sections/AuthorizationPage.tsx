@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { User } from '../../../global_functions/global_interfaces';
 import { useNavigate } from 'react-router-dom';
-import "../authorization.css"
+import "../../authorization.css"
 
 interface LoginProps {
   onLogin: (user: User) => void;
